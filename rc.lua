@@ -16,17 +16,19 @@ local terminal = "gnome-terminal"
 local browser = "chromium"
 local fmhome = "pcmanfm"
 local editor = os.getenv("EDITOR") or "vim"
-local editor_cmd = terminal .. " -e " .. editor
-local exec   = awful.util.spawn
-local sexec  = awful.util.spawn_with_shell
+
 -- Default modkey. Mod4 
-local modkey = "Mod4"
+local super = "Mod4"
+local alt = "Mod"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
     awful.layout.suit.tile,             -- 1
     awful.layout.suit.floating,         -- 2
-    awful.layout.suit.max.fullscreen    -- 3
+    awful.layout.suit.max				-- 3
+	--awful.layout.suit.tile.left,		-- 4
+	--awful.layout.suit.tile.bottom,		-- 5
+	--awful.layout.suit.tile.top			-- 6
 }
 -- }}}
 
@@ -35,7 +37,7 @@ tags = {
     names = {"devel","irssi","inet","game","convi"},
     layout = {layouts[1],layouts[1],layouts[2],layouts[2],layouts[1]}
 }
-tags[0] = awful.tag(tags.names, s, tags.layout)
+tags[1] = awful.tag(tags.names, s, tags.layout)
 -- }}}
 
 -- {{{ Menu launcher 
@@ -87,26 +89,4 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 -- }}}
 
--- {{{ Widgets
-mysystray = widget({ type = "systray" })
-
-mytextclock = awful.widget.textclock({ align = "right" })
-
-mytaglist = {}
-mytaglist[0] = awful.widget.taglist(0, awful.widget.taglist.label.all, mytaglist.buttons)
--- }}}
--- {{{ Wibox
-
-mywibox = {}
-mywibox[0] = awful.wibox({ position = "top", screen = s })
-mywibox[0].widgets = {
-    {
-        mylauncher,
-        mytaglist[0]
-    },
-    mytextclock,
-    mysystray,
-    layout = awful.widget.layout.horizontal.rightleft
-}
--- {{{ Key Bindings
-
+-- {{{ 
