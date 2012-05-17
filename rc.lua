@@ -86,8 +86,8 @@ upicon.image = image(beautiful.upload)
 -- initialize
 netwidget = widget({ type = "textbox" })
 -- register
-vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb}</span>
-<span color="' .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb}</span><span color="'
+ .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
 -- }
 
 -- { launcher for power off etc
