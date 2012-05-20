@@ -54,7 +54,7 @@ cpuicon = widget({ type = "imagebox" })
 --cpuicon.image = image(beautiful.cpu) --need a new symbol in the theme
 -- initialize
 cpugraph = awful.widget.graph()
-tempearture = widget({ type = "textbox" })
+temperature = widget({ type = "textbox" })
 -- graph properties
 cpugraph:set_width(40):set_height(15)
 cpugraph:set_background_color(beautiful.background_color) --color have to be defined in the theme
@@ -156,4 +156,35 @@ menulauncher = awful.widget.launcher({ image = image(beautiful.menulauncher),
 
 -- {{ wibox
 for s = 1, screen.count() do
-	
+	-- { promptbox, taglist and layoutbox
+	promptbox = {}
+	taglist = {}
+	layoutbox = {}
+	-- promptbox
+	promptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+	-- taglist
+	taglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, taglist.buttons )
+	-- layoutbox
+	layoutbox[s] = awful.widget.layoutbox(s)
+	-- }
+	-- { wibox
+	wii = {}
+	wii[s] = awful.wibox({ position = "top", screen = s })
+	wii[s].widgets = {
+		{
+		menulauncher,
+		powerlauncher,
+		taglist[s],
+		promptbox[s],
+		layout = awful.widget.layout.horizontal.leftright
+		},
+		layoutbox[s],
+		clock, separator,
+		systray, separator,
+		upcicon, netwidget, downicon, separator,
+		memory, memicon, separator,
+		cpugraph, temperature, cpuicon, separator,
+		layout = awful.widget.layout.horizontal.rightleft
+	}
+end
+-- }}
