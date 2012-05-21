@@ -96,13 +96,13 @@ theme.layout_spiral  = "/usr/share/awesome/themes/igotblues/layouts/spiralw.png"
 theme.layout_dwindle = "/usr/share/awesome/themes/igotblues/layouts/dwindlew.png"
 
 -- vicious icon
-theme.separator = "/usr/share/awesome/icons/separator.png"
-theme.cpu = "/usr/share/awesome/icons/cpu.png"
-theme.memory = "/usr/share/awesome/icons/memory.png"
-theme.download = "/usr/share/awesome/icons/download.png"
-theme.upload = "/usr/share/awesome/icons/upload.png"
-theme.powerlauncher = "/usr/share/awesome/icons/power.png"
-theme.menulauncher = "/usr/share/awesome/icons/awesome16.png"
+theme.separator = "/usr/share/awesome/themes/igotblues/icons/separator.png"
+theme.cpu = "/usr/share/awesome/themes/igotblues/icons/cpu.png"
+theme.memory = "/usr/share/awesome/themes/igotblues/icons/memory.png"
+theme.download = "/usr/share/awesome/themes/igotblues/icons/download.png"
+theme.upload = "/usr/share/awesome/themes/igotblues/icons/upload.png"
+theme.powerlauncher = "/usr/share/awesome/themes/igotblues/icons/power.png"
+theme.menulauncher = "/usr/share/awesome/themes/igotblues/icons/awesome16.png"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80
