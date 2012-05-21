@@ -4,8 +4,11 @@
 
 theme = {}
 
--- light blues  = 0358d7
+-- colors
+theme.background_color = "#00255c"
+theme.foreground_color = "#0358d7"
 
+-- standard colors
 theme.font          = "sans 10"
 
 theme.bg_normal     = "#222222"
@@ -92,7 +95,14 @@ theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
 theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
 theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
-theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
+-- vicious icon
+theme.separator = "/usr/share/awesome/icons/separator.png"
+theme.cpu = "/usr/share/awesome/icons/cpu.png"
+theme.memory = "/usr/share/awesome/icons/memory.png"
+theme.download = "/usr/share/awesome/icons/download.png"
+theme.upload = "/usr/share/awesome/icons/upload.png"
+theme.powerlauncher = "/usr/share/awesome/icons/power.png"
+theme.menulauncher = "/usr/share/awesome/icons/awesome16.png"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80
