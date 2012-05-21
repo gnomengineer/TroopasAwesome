@@ -15,7 +15,7 @@ local superkey = "Mod4"
 local home = os.getenv("HOME")
 local terminal = "gnome-terminal"
 -- theme
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/usr/share/awesome/themes/igotblues/theme.lua")
 
 -- layouts
 layouts = {
@@ -28,7 +28,7 @@ layouts = {
 
 -- {{ tags
 tags = { name = {"games", "system", "internet", "chat", "vai"},
-		 layout = {layouts[3],layouts[1],layouts[3],layouts[1],layouts[4]
+		 layout = {layouts[3],layouts[1],layouts[3],layouts[1],layouts[4]}
 	   }
 for s = 1, screen.count() do
     tags[s]  = awful.tag(tags.name, s, tags.layout)
@@ -38,7 +38,7 @@ end
 -- {{ widgets
 -- { separator
 separator = widget({ type = "imagebox" })
---separator.image = image(beautiful.separator) --need a new symbol in the theme
+separator.image = image(beautiful.separator) --need a new symbol in the theme
 -- }
 
 -- { textclock
@@ -51,29 +51,29 @@ systray = widget({ type = "systray" })
 
 -- { cpu usage and temperature
 cpuicon = widget({ type = "imagebox" })
---cpuicon.image = image(beautiful.cpu) --need a new symbol in the theme
+cpuicon.image = image(beautiful.cpu) --need a new symbol in the theme
 -- initialize
-cpugraph = awful.widget.graph()
+cpu = widget({ type = "textbox" })
 temperature = widget({ type = "textbox" })
--- graph properties
-cpugraph:set_width(40):set_height(15)
-cpugraph:set_background_color(beautiful.background_color) --color have to be defined in the theme
-cpugraph:set_gradient_angle(0):set_gradient_colors(beautiful.foreground_color)
 -- register
-vicious.register(cpugraph, vicious.widgets.cpu, "$1")
+vicious.register(cpu, vicious.widgets.cpu, "$1%")
 vicious.register(temperature, vicious.widgets.thermal, "$1", 42, "thermal_zone0")
 -- }
 
 -- { memory usage
 memicon = widget({ type = "imagebox" })
---memicon.image = image(beautiful.memory) --need a new symbol in the theme
+memicon.image = image(beautiful.memory) --need a new symbol in the theme
 -- initialize
 memory = awful.widget.progressbar()
 -- progressbar properties
-memory:set_vertical(true):set_ticks(true)
-memory:set_height(15):set_width(14):set_ticks_size(2)
-memory:set_background_color(beautiful.background_color) --color have to be defined in the theme
-memory:set_gradient_colors(beautiful.foreground_color)
+memory:set_vertical(true)
+memory:set_ticks(true)
+memory:set_ticks_size(2)
+memory:set_height(15)
+memory:set_width(14)
+memory:set_border_color(nil)
+memory:set_background_color(beautiful.background_color)
+memory:set_color(beautiful.foreground_color)
 -- register
 vicious.register(memory, vicious.widgets.mem, "$1", 13)
 -- }
@@ -92,7 +92,7 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.fo
 
 -- { launcher for power off etc
 awesomemenu = {
-	{ "restart", awesome.restart}
+	{ "restart", awesome.restart},
 	{ "quit", awesome.quit}
 }
 
@@ -183,7 +183,7 @@ for s = 1, screen.count() do
 		systray, separator,
 		upcicon, netwidget, downicon, separator,
 		memory, memicon, separator,
-		cpugraph, temperature, cpuicon, separator,
+		cpu, temperature, cpuicon, separator,
 		layout = awful.widget.layout.horizontal.rightleft
 	}
 end
