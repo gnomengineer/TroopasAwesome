@@ -13,13 +13,13 @@ theme.font          = "sans 10"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
+theme.bg_urgent     = "#0358d7"
 theme.bg_minimize   = "#444444"
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = "#00255c"
+theme.fg_focus      = "#0358d7"
+theme.fg_urgent     = "#00255c"
+theme.fg_minimize   = "#00255c"
 
 theme.border_width  = "1"
 theme.border_normal = "#000000"
@@ -37,15 +37,15 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Display the taglist squares
-theme.taglist_squares_sel   = "/usr/share/awesome/themes/default/taglist/squarefw.png"
-theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew.png"
+theme.taglist_squares_sel   = "/usr/share/awesome/themes/igotblues/taglist/squarefw.png"
+theme.taglist_squares_unsel = "/usr/share/awesome/themes/igotblues/taglist/squarew.png"
 
-theme.tasklist_floating_icon = "/usr/share/awesome/themes/default/tasklist/floatingw.png"
+theme.tasklist_floating_icon = "/usr/share/awesome/themes/igotblues/tasklist/floatingw.png"
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
+theme.menu_submenu_icon = "/usr/share/awesome/themes/igotblues/submenu.png"
 theme.menu_height = "15"
 theme.menu_width  = "100"
 
@@ -55,45 +55,45 @@ theme.menu_width  = "100"
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = "/usr/share/awesome/themes/default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = "/usr/share/awesome/themes/default/titlebar/close_focus.png"
+theme.titlebar_close_button_normal = "/usr/share/awesome/themes/igotblues/titlebar/close_normal.png"
+theme.titlebar_close_button_focus  = "/usr/share/awesome/themes/igotblues/titlebar/close_focus.png"
 
-theme.titlebar_ontop_button_normal_inactive = "/usr/share/awesome/themes/default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = "/usr/share/awesome/themes/default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = "/usr/share/awesome/themes/default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive = "/usr/share/awesome/themes/igotblues/titlebar/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive  = "/usr/share/awesome/themes/igotblues/titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active = "/usr/share/awesome/themes/igotblues/titlebar/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active  = "/usr/share/awesome/themes/igotblues/titlebar/ontop_focus_active.png"
 
-theme.titlebar_sticky_button_normal_inactive = "/usr/share/awesome/themes/default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = "/usr/share/awesome/themes/default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = "/usr/share/awesome/themes/default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/sticky_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive = "/usr/share/awesome/themes/igotblues/titlebar/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive  = "/usr/share/awesome/themes/igotblues/titlebar/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active = "/usr/share/awesome/themes/igotblues/titlebar/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active  = "/usr/share/awesome/themes/igotblues/titlebar/sticky_focus_active.png"
 
-theme.titlebar_floating_button_normal_inactive = "/usr/share/awesome/themes/default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = "/usr/share/awesome/themes/default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = "/usr/share/awesome/themes/default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/floating_focus_active.png"
+theme.titlebar_floating_button_normal_inactive = "/usr/share/awesome/themes/igotblues/titlebar/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive  = "/usr/share/awesome/themes/igotblues/titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active = "/usr/share/awesome/themes/igotblues/titlebar/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active  = "/usr/share/awesome/themes/igotblues/titlebar/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/igotblues/titlebar/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/igotblues/titlebar/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/igotblues/titlebar/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/igotblues/titlebar/maximized_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "background /usr/share/awesome/themes/default/background.png" }
+theme.wallpaper_cmd = { "background /usr/share/awesome/themes/igotblues/background.png" }
 
 -- You can use your own layout icons like this:
-theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
-theme.layout_fairv = "/usr/share/awesome/themes/default/layouts/fairvw.png"
-theme.layout_floating  = "/usr/share/awesome/themes/default/layouts/floatingb.png"
-theme.layout_magnifier = "/usr/share/awesome/themes/default/layouts/magnifierw.png"
-theme.layout_max = "/usr/share/awesome/themes/default/layouts/maxb.png"
-theme.layout_fullscreen = "/usr/share/awesome/themes/default/layouts/fullscreenw.png"
-theme.layout_tilebottom = "/usr/share/awesome/themes/default/layouts/tilebottomb.png"
-theme.layout_tileleft   = "/usr/share/awesome/themes/default/layouts/tileleftw.png"
-theme.layout_tile = "/usr/share/awesome/themes/default/layouts/tileb.png"
-theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
-theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
-theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
+theme.layout_fairh = "/usr/share/awesome/themes/igotblues/layouts/fairhw.png"
+theme.layout_fairv = "/usr/share/awesome/themes/igotblues/layouts/fairvw.png"
+theme.layout_floating  = "/usr/share/awesome/themes/igotblues/layouts/floatingb.png"
+theme.layout_magnifier = "/usr/share/awesome/themes/igotblues/layouts/magnifierw.png"
+theme.layout_max = "/usr/share/awesome/themes/igotblues/layouts/maxb.png"
+theme.layout_fullscreen = "/usr/share/awesome/themes/igotblues/layouts/fullscreenw.png"
+theme.layout_tilebottom = "/usr/share/awesome/themes/igotblues/layouts/tilebottomb.png"
+theme.layout_tileleft   = "/usr/share/awesome/themes/igotblues/layouts/tileleftw.png"
+theme.layout_tile = "/usr/share/awesome/themes/igotblues/layouts/tileb.png"
+theme.layout_tiletop = "/usr/share/awesome/themes/igotblues/layouts/tiletopw.png"
+theme.layout_spiral  = "/usr/share/awesome/themes/igotblues/layouts/spiralw.png"
+theme.layout_dwindle = "/usr/share/awesome/themes/igotblues/layouts/dwindlew.png"
 
 -- vicious icon
 theme.separator = "/usr/share/awesome/icons/separator.png"
