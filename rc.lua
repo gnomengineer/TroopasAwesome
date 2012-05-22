@@ -13,7 +13,7 @@ local altkey = "Mod1"
 local superkey = "Mod4"
 
 local home = os.getenv("HOME")
-local terminal = "gnome-terminal"
+local terminal = "lxterminal"
 -- theme
 beautiful.init("/usr/share/awesome/themes/igotblues/theme.lua")
 
@@ -159,6 +159,14 @@ for s = 1, screen.count() do
 	-- { promptbox, taglist and layoutbox
 	promptbox = {}
 	taglist = {}
+	taglist.buttons = awful.util.table.join(
+		awful.button({}, 1, awful.tag.viewonly),
+		awful.button({superkey}, 1, awful.client.movetotag),
+		awful.button({}, 3, awful.tag.viewtoggle),
+		awful.button({superkey}, 3, awful.client.toggletag),
+		awful.button({}, 4, awful.tag.viewnext),
+		awful.button({}, 5, awful.tag.viewprev)
+	)	
 	layoutbox = {}
 	-- promptbox
 	promptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -166,6 +174,12 @@ for s = 1, screen.count() do
 	taglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, taglist.buttons )
 	-- layoutbox
 	layoutbox[s] = awful.widget.layoutbox(s)
+	layoutbox[s]:buttons(awful.util.table.join(
+		awful.button({}, 1, function () awful.layout.inc(layouts, 1) end),
+		awful.button({}, 3, function () awful.layout.inc(layouts, -1) end),
+		awful.button({}, 4, function () awful.layout.inc(layouts, 1) end),
+		awful.button({}, 5, function () awful.layout.inc(layouts, -1) end)
+	))
 	-- }
 	-- { wibox
 	wii = {}
@@ -179,12 +193,23 @@ for s = 1, screen.count() do
 		layout = awful.widget.layout.horizontal.leftright
 		},
 		layoutbox[s],
-		clock, separator,
-		systray, separator,
-		upcicon, netwidget, downicon, separator,
+		clock, systray, separator,
+		upicon, netwidget, downicon, separator,
 		memory, memicon, separator,
 		cpu, temperature, cpuicon, separator,
 		layout = awful.widget.layout.horizontal.rightleft
 	}
 end
 -- }}
+
+-- {{ mouse bindings
+root.buttons(awful.util.table.join(
+	awful.button({}, 3, function () menulauncher:toggle() end),
+	awful.button({ superkey}, 3, function () powerlauncher:toggle() end),
+	awful.button({}, 4, awful.tag.viewnext),
+	awful.button({}, 5, awful.tag.viewprev)
+))
+-- }}
+
+-- {{ key bindings
+
