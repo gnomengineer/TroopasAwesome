@@ -11,6 +11,7 @@ require("vicious")
 -- {{ variable definitions
 local altkey = "Mod1"
 local superkey = "Mod4"
+local control = "Control_L"
 
 local home = os.getenv("HOME")
 local terminal = "lxterminal"
@@ -212,4 +213,48 @@ root.buttons(awful.util.table.join(
 -- }}
 
 -- {{ key bindings
+-- normal key bindings
+keybindings = awful.util.table.join(
+    -- some routine function
+    awful.key({ superkey }, "t", function () awful.util.spawn(terminal) end),
+    awful.key({ superkey }, "w", function () menulauncher:show({ keygrabber=true }) end),
+    awful.key({ superkey }, "l", function () slim.lock end)
+    awful.key({ superkey }, "p", function () powerlauncher:show({ keygrabber=true }) end),
+    awful.key({ superkey }, "e", function () awful.util.spawn("pcmanfm") end),
+    awful.key({ superkey }, "r", function () awful.util.spawn("executer") end),
 
+    -- start programs
+    awful.key({ control }, "s", function () awful.util.spawn("skype") end),
+    awful.key({ control }, "t", function () awful.util.spawn("teamspeak3") end),
+    awful.key({ control }, "c", function () awful.util.spawn("irssi") end),
+    awful.key({ control }, "w", function () awful.util.spawn("chromium") end),
+    awful.key({ control }, "m", function () awful.util.spawn("thunderbird") end),
+    awful.key({ control }, "r", function () awful.util.spawn("gtk-recordmydesktop") end)
+)
+
+-- switch tags with number
+keynumber = 0
+for s = 1, screen.count() do
+    keynumber = math.min(9, math.max(#tags[s], keynumber));
+end
+-- bind keynumber to tag
+for i = 1, keynumber do
+    keybindings = awful.util.table.join( keybindings,
+        awful.key({ superkey }, "#" .. i + 9,
+            function () 
+                local screen = mouse.screen
+                if tags[screen][i] then
+                    awful.tag.viewonly(tags[screen][i])
+                end
+            end
+        )
+    )
+end
+-- window resize/move with mouse
+mousebuttons = awful.util.table.join(
+    awful.button({ superkey }, 1, awful.client.mouse.move),
+    awful.button({ superkey }, 3, awful.client.mouse.resize)
+)
+-- set all keybindings
+root.keys(keybindings)
+-- }}
