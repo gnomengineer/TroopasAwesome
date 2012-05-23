@@ -5,21 +5,21 @@
 theme = {}
 
 -- colors
-theme.background_color = "#00255c"
+theme.background_color = "#0358c7"
 theme.foreground_color = "#0358d7"
 
 -- standard colors
 theme.font          = "sans 10"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
+theme.bg_normal     = "#000000"
+theme.bg_focus      = "#222222"
 theme.bg_urgent     = "#0358d7"
-theme.bg_minimize   = "#444444"
+theme.bg_minimize   = "#000000"
 
-theme.fg_normal     = "#00255c"
+theme.fg_normal     = "#0358c7"
 theme.fg_focus      = "#0358d7"
-theme.fg_urgent     = "#00255c"
-theme.fg_minimize   = "#00255c"
+theme.fg_urgent     = "#000000"
+theme.fg_minimize   = "#0358c7"
 
 theme.border_width  = "1"
 theme.border_normal = "#000000"
