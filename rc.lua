@@ -169,12 +169,30 @@ for s = 1, screen.count() do
 		awful.button({superkey}, 3, awful.client.toggletag),
 		awful.button({}, 4, awful.tag.viewnext),
 		awful.button({}, 5, awful.tag.viewprev)
-	)	
+	)
+	tasklist = {}
+	tasklist.buttons = awful.util.table.join(
+                awful.button({ }, 1, function (c)
+		    if c == client.focus then
+		       c.minimized = true
+		    else
+		        if not c:isvisible() then
+		            awful.tag.viewonly(c:tags()[1])
+		        end
+		        -- This will also un-minimize
+		        -- the client, if needed
+		        client.focus = c
+		        c:raise()
+		    end
+		end)	
+	)
 	layoutbox = {}
 	-- promptbox
 	promptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
 	-- taglist
 	taglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, taglist.buttons )
+	-- tasklist
+	tasklist[s] = awful.widget.tasklist( function(c) return awful.widget.tasklist.label.currenttags(c, s) end, tasklist.buttons)
 	-- layoutbox
 	layoutbox[s] = awful.widget.layoutbox(s)
 	layoutbox[s]:buttons(awful.util.table.join(
@@ -200,6 +218,7 @@ for s = 1, screen.count() do
 		upicon, netwidget, downicon, separator,
 		memory, memicon, separator,
 		cpu, temperature, cpuicon, separator,
+		tasklist[s],
 		layout = awful.widget.layout.horizontal.rightleft
 	}
 end
@@ -208,7 +227,7 @@ end
 -- {{ mouse bindings
 root.buttons(awful.util.table.join(
 	awful.button({}, 3, function () powermenu:hide(); mainmenu:toggle() end),
-	awful.button({ control }, 3, function () mainmenu:hide(); powermenu:toggle() end),
+	awful.button({ superkey }, 3, function () mainmenu:hide(); powermenu:toggle() end),
 	awful.button({}, 4, awful.tag.viewnext),
 	awful.button({}, 5, awful.tag.viewprev)
 ))
@@ -223,7 +242,7 @@ keybindings = awful.util.table.join(
     --awful.key({ superkey }, "l", function () slim.lock end)
     awful.key({ superkey, }, "p", function () powermenu:show({ keygrabber = true }) end),
     awful.key({ superkey, }, "e", function () awful.util.spawn("pcmanfm") end),
-    awful.key({ superkey, }, "r", function () awful.util.spawn("executer") end),
+    --awful.key({ superkey, }, "r", function () awful.util.spawn("executer") end),
 
     -- start programs
     awful.key({ superkey ,"Control"}, "s", function () awful.util.spawn("skype") end),
