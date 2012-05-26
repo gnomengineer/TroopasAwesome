@@ -5,10 +5,11 @@
 #
 # data 2012-04-20
 #
-# YOU CAN INSTALL IT NOW, BUT IT HAS ONLY LOW FUNCTIONALLITY
-#
 # I started with this project a few days ago, so im not really far with developing
 # you can watch this repo and from time to time i will push a new version of the rc.lua
+
+
+VERSION 1.0 RELEASED
 
 ----New Update will be logged in this README-----
 
@@ -19,3 +20,9 @@ May 20th => widgets to the wibox added, and started to rebuild theme.lua
 May 21th => rc.lua: cpu is now only in percent (no graph) and its running NOW but only with small functionality
 May 22th => rc.lua: buttons for the wibox and mous bindings added, terminal variable changed; igotblues/icons: memory.png modified
 May 23th => rc.lua: keybindings added to run simple systemfunctions or to start programs; igotblues/theme.lua: color get more visibility
+May 27th => rc.lua: signals added and bug fixed; igotblues/icons: pictures for both menulauncher added (not final version)
+
+
+---- Installation ----
+
+... will continue
