@@ -5,6 +5,7 @@ require("awful.autofocus")
 -- theme library
 require("beautiful")
 -- extra libraries
+require("naughty")
 require("vicious")
 -- }}
 
@@ -99,6 +100,7 @@ awesomemenu = {
 
 powermenu = awful.menu({ items = {	{ "power off", "gedit" },
 									{ "logout", "gedit"},
+									{ "terminal", terminal},
 									{ "awesome", awesomemenu }
 								 }
 					   })
@@ -205,8 +207,8 @@ end
 
 -- {{ mouse bindings
 root.buttons(awful.util.table.join(
-	awful.button({}, 3, function () menulauncher:toggle() end),
-	awful.button({ superkey}, 3, function () powerlauncher:toggle() end),
+	awful.button({}, 3, function () powermenu:hide(); mainmenu:toggle() end),
+	awful.button({ control }, 3, function () mainmenu:hide(); powermenu:toggle() end),
 	awful.button({}, 4, awful.tag.viewnext),
 	awful.button({}, 5, awful.tag.viewprev)
 ))
@@ -216,20 +218,20 @@ root.buttons(awful.util.table.join(
 -- normal key bindings
 keybindings = awful.util.table.join(
     -- some routine function
-    awful.key({ superkey }, "t", function () awful.util.spawn(terminal) end),
-    awful.key({ superkey }, "w", function () menulauncher:show({ keygrabber=true }) end),
-    awful.key({ superkey }, "l", function () slim.lock end)
-    awful.key({ superkey }, "p", function () powerlauncher:show({ keygrabber=true }) end),
-    awful.key({ superkey }, "e", function () awful.util.spawn("pcmanfm") end),
-    awful.key({ superkey }, "r", function () awful.util.spawn("executer") end),
+    awful.key({ superkey, }, "t", function () awful.util.spawn(terminal) end),
+    awful.key({ superkey, }, "w", function () mainmenu:show({ keygrabber = true }) end),
+    --awful.key({ superkey }, "l", function () slim.lock end)
+    awful.key({ superkey, }, "p", function () powermenu:show({ keygrabber = true }) end),
+    awful.key({ superkey, }, "e", function () awful.util.spawn("pcmanfm") end),
+    awful.key({ superkey, }, "r", function () awful.util.spawn("executer") end),
 
     -- start programs
-    awful.key({ control }, "s", function () awful.util.spawn("skype") end),
-    awful.key({ control }, "t", function () awful.util.spawn("teamspeak3") end),
-    awful.key({ control }, "c", function () awful.util.spawn("irssi") end),
-    awful.key({ control }, "w", function () awful.util.spawn("chromium") end),
-    awful.key({ control }, "m", function () awful.util.spawn("thunderbird") end),
-    awful.key({ control }, "r", function () awful.util.spawn("gtk-recordmydesktop") end)
+    awful.key({ superkey ,"Control"}, "s", function () awful.util.spawn("skype") end),
+    awful.key({ superkey ,"Control" }, "t", function () awful.util.spawn("teamspeak3") end),
+    awful.key({ superkey ,"Control" }, "c", function () awful.util.spawn("irssi") end),
+    awful.key({ superkey , "Control" }, "w", function () awful.util.spawn("chromium") end),
+    awful.key({ superkey , "Control" }, "m", function () awful.util.spawn("thunderbird") end),
+    awful.key({ superkey , "Control" }, "r", function () awful.util.spawn("gtk-recordmydesktop") end)
 )
 
 -- switch tags with number
@@ -252,9 +254,28 @@ for i = 1, keynumber do
 end
 -- window resize/move with mouse
 mousebuttons = awful.util.table.join(
-    awful.button({ superkey }, 1, awful.client.mouse.move),
-    awful.button({ superkey }, 3, awful.client.mouse.resize)
+    awful.button({ superkey }, 1, awful.mouse.client.move),
+    awful.button({ superkey }, 3, awful.mouse.client.resize)
 )
 -- set all keybindings
 root.keys(keybindings)
+-- }}
+
+-- {{ signals
+client.add_signal("manage", function (c, startup)
+	c:add_signal("mouse::enter", function (c)
+		if awful.layout.get(c.screen) ~= awful.layout.suit.magifier and awful.client.focus.filter(c) then
+			client.focus = c
+		end
+	end)
+	
+	if not startup then
+		if not c.size_hints.user_position and not c.size_hints.program_position then
+			awful.placement.no_overlap(c)
+			awful.placement.no_offscreen(c)
+		end
+	end
+end)
+client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}
