@@ -113,7 +113,7 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 gamesubmenu = {
 	{ "GuildWars2", "wine ~/Games/GuildWars2/Gw2.exe" },
 	{ "Teeworlds", "teeworlds" },
-	{ "Spiral Knights", "." .. home .. "/Games/spiral/spiral" }
+	{ "Spiral Knights", "java -jar getdown-pro.jar ~/Games/spiral" }
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
@@ -137,10 +137,10 @@ chatsubmenu = {
 -- menu for ALL applications from multimedia (video,audio,image)
 mediasubmenu = {
 	{ "VLC", "vlc" },
-	{ "Musicplayer", "gnome-terminal mocp" },
+	{ "Musicplayer", "lxterminal mocp" },
 	{ "Openshot", "openshot" },
 	{ "Audacity", "audacity" },
-	{ "Recorder", "recordmydesktop" }, --this is only a call without any properties
+	{ "Recorder", "gtk-recordmydesktop" }, --this is only a call without any properties
 	{ "GIMP", "gimp" }
 }
 mainmenu = awful.menu({ items = { { "games", gamesubmenu },
