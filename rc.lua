@@ -140,7 +140,7 @@ mediasubmenu = {
 	{ "Musicplayer", "lxterminal mocp" },
 	{ "Openshot", "openshot" },
 	{ "Audacity", "audacity" },
-	{ "Recorder", "gtk-recordmydesktop" }, --this is only a call without any properties
+	{ "Recorder", "gtk-recordMyDesktop" }, --this is only a call without any properties
 	{ "GIMP", "gimp" }
 }
 mainmenu = awful.menu({ items = { { "games", gamesubmenu },
