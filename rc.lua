@@ -1,3 +1,7 @@
+--@TODO Memory vicious doesnt work
+--@TODO clients aren't resizeable and moveable
+--@TODO make a better contrast for the theme
+--@TODO format of the CPU and the Up/Download can be better
 -- {{ libraries
 require("awful")
 require("awful.rules")
