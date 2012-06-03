@@ -21,7 +21,7 @@ May 21th => rc.lua: cpu is now only in percent (no graph) and its running NOW bu
 May 22th => rc.lua: buttons for the wibox and mous bindings added, terminal variable changed; igotblues/icons: memory.png modified
 May 23th => rc.lua: keybindings added to run simple systemfunctions or to start programs; igotblues/theme.lua: color get more visibility
 May 27th => rc.lua: signals added and bug fixed; igotblues/icons: pictures for both menulauncher added (not final version)
-
+June 3rd => rc.lua: memory widget now in percent, up and downloadrate have an separator between; theme.lua: the command "background" didn't work so i changed it back to "awsetbg"
 
 ---- Installation ----
 
