@@ -1,7 +1,4 @@
---@TODO Memory vicious doesnt work
 --@TODO clients aren't resizeable and moveable
---@TODO make a better contrast for the theme
---@TODO format of the CPU and the Up/Download can be better
 -- {{ libraries
 require("awful")
 require("awful.rules")
@@ -70,18 +67,9 @@ vicious.register(temperature, vicious.widgets.thermal, "$1", 42, "thermal_zone0"
 memicon = widget({ type = "imagebox" })
 memicon.image = image(beautiful.memory) --need a new symbol in the theme
 -- initialize
-memory = awful.widget.progressbar()
--- progressbar properties
-memory:set_vertical(true)
-memory:set_ticks(true)
-memory:set_ticks_size(2)
-memory:set_height(15)
-memory:set_width(14)
-memory:set_border_color(nil)
-memory:set_background_color(beautiful.background_color)
-memory:set_color(beautiful.foreground_color)
+memory = widget({ type = "textbox" })
 -- register
-vicious.register(memory, vicious.widgets.mem, "$1", 13)
+vicious.register(memory, vicious.widgets.mem, "$1%", 13)
 -- }
 
 -- { upload/download rate
@@ -92,7 +80,7 @@ upicon.image = image(beautiful.upload)
 -- initialize
 netwidget = widget({ type = "textbox" })
 -- register
-vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb}</span><span color="'
+vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb} | </span><span color="'
  .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
 -- }
 
