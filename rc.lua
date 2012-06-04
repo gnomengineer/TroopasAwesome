@@ -103,9 +103,9 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 -- { menu launcher 
 -- menu for my games
 gamesubmenu = {
-	{ "GuildWars2", "wine ~/Games/GuildWars2/Gw2.exe" },
+	{ "GuildWars2", function() awful.util.spawn_with_shell("wine ~/Games/GuildWars2/Gw2.exe") end},
 	{ "Teeworlds", "teeworlds" },
-	{ "Spiral Knights", "java -jar getdown-pro.jar ~/Games/spiral" }
+	{ "Spiral Knights", function() awful.util.spawn_with_shell("java -jar getdown-pro.jar /home/troopa/Games/spiral") end}
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
@@ -123,13 +123,13 @@ netsubmenu = {
 -- menu for applications with them i can chat/talk to another people
 chatsubmenu = {
 	{ "Skype", "skype" },
-	{ "IRC", "irssi" }, --this is only a call without any properties
+	{ "IRC", function() awful.util.spawn_with_shell("irssi") end}, --this is only a call without any properties
 	{ "Teamspeak3", "teamspeak3" } 
 }
 -- menu for ALL applications from multimedia (video,audio,image)
 mediasubmenu = {
 	{ "VLC", "vlc" },
-	{ "Musicplayer", "lxterminal mocp" },
+	{ "Musicplayer", function() awful.util.spawn_with_shell("mocp") end},
 	{ "Openshot", "openshot" },
 	{ "Audacity", "audacity" },
 	{ "Recorder", "gtk-recordMyDesktop" }, --this is only a call without any properties
@@ -236,13 +236,12 @@ keybindings = awful.util.table.join(
     awful.key({ superkey, }, "e", function () awful.util.spawn("pcmanfm") end),
     --awful.key({ superkey, }, "r", function () awful.util.spawn("executer") end),
 
-    -- start programs
-    awful.key({ superkey ,"Control"}, "s", function () awful.util.spawn("skype") end),
+	awful.key({ superkey, "Control" }, "s", function () awful.util.spawn("skype") end),
     awful.key({ superkey ,"Control" }, "t", function () awful.util.spawn("teamspeak3") end),
     awful.key({ superkey ,"Control" }, "c", function () awful.util.spawn("irssi") end),
-    awful.key({ superkey , "Control" }, "w", function () awful.util.spawn("chromium") end),
+    awful.key({ superkey , "Control" }, "b", function () awful.util.spawn("chromium") end),
     awful.key({ superkey , "Control" }, "m", function () awful.util.spawn("thunderbird") end),
-    awful.key({ superkey , "Control" }, "r", function () awful.util.spawn("gtk-recordmydesktop") end)
+    awful.key({ superkey , "Control" }, "r", function () awful.util.spawn("gtk-recordMyDesktop") end)
 )
 
 -- switch tags with number
