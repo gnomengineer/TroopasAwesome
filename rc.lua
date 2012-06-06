@@ -105,14 +105,16 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 gamesubmenu = {
 	{ "GuildWars2", function() awful.util.spawn_with_shell("wine ~/Games/GuildWars2/Gw2.exe") end},
 	{ "Teeworlds", "teeworlds" },
-	{ "Spiral Knights", function() awful.util.spawn_with_shell("java -jar getdown-pro.jar /home/troopa/Games/spiral") end}
+	{ "Spiral Knights", "sh ~/Games/spiral/executer.sh"},
+	{ "Minecraft", "sh ~/Games/Minecraft/mincrafter.sh"} 
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
 	{ "GEdit", "gedit" },
 	{ "VirtualBox", "virtualbox" },
 	{ "Sound", "pavucontrol" },
-	{ "FileManager", "pcmanfm" }
+	{ "FileManager", "pcmanfm" },
+	{ "Calculator", "galculator" }
 }
 -- menu for internet applications
 netsubmenu = {
