@@ -60,7 +60,7 @@ cpu = widget({ type = "textbox" })
 temperature = widget({ type = "textbox" })
 -- register
 vicious.register(cpu, vicious.widgets.cpu, "$1%")
-vicious.register(temperature, vicious.widgets.thermal, "$1", 42, "thermal_zone0")
+vicious.register(temperature, vicious.widgets.thermal, "$1 ?C", 42, "thermal_zone0")
 -- }
 
 -- { memory usage
@@ -105,8 +105,8 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 gamesubmenu = {
 	{ "GuildWars2", function() awful.util.spawn_with_shell("wine ~/Games/GuildWars2/Gw2.exe") end},
 	{ "Teeworlds", "teeworlds" },
-	{ "Spiral Knights", "sh ~/Games/spiral/executer.sh"},
-	{ "Minecraft", "sh ~/Games/Minecraft/mincrafter.sh"} 
+	{ "Spiral Knights", function() awful.util.spawn_with_shell("sh /home/troopa/Games/spiral/executer.sh") end},
+	{ "Minecraft", "sh /home/troopa/Games/Minecraft/mincrafter.sh"} 
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
