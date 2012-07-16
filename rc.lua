@@ -1,4 +1,5 @@
 --@TODO clients aren't resizeable and moveable
+--@TODO rightclick context menu to close a window/client
 -- {{ libraries
 require("awful")
 require("awful.rules")
@@ -115,7 +116,8 @@ syssubmenu = {
 	{ "VirtualBox", "virtualbox" },
 	{ "Sound", "pavucontrol" },
 	{ "FileManager", "pcmanfm" },
-	{ "Calculator", "galculator" }
+	{ "Calculator", "galculator" },
+	{ "Teamviewer", "teamviewer7" }
 }
 -- menu for internet applications
 netsubmenu = {
@@ -149,6 +151,13 @@ mainmenu = awful.menu({ items = { { "games", gamesubmenu },
 menulauncher = awful.widget.launcher({ image = image(beautiful.menulauncher),
 									   menu = mainmenu
 									})
+
+-- }
+
+--{ context menu, rightclick on the tasklist
+contextmenu = awful.menu({ items = { { "close", "bla" }
+								   }
+						})
 -- }
 -- }}
 
@@ -179,7 +188,8 @@ for s = 1, screen.count() do
 		        client.focus = c
 		        c:raise()
 		    end
-		end)	
+		end),
+				awful.button({}, 3, function (c) contextmenu:toggle() end)
 	)
 	layoutbox = {}
 	-- promptbox
@@ -238,6 +248,7 @@ keybindings = awful.util.table.join(
     awful.key({ superkey, }, "p", function () powermenu:show({ keygrabber = true }) end),
     awful.key({ superkey, }, "e", function () awful.util.spawn("pcmanfm") end),
     --awful.key({ superkey, }, "r", function () awful.util.spawn("executer") end),
+	awful.key({}, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/ 2>/dev/null'") end),
 
 	awful.key({ superkey, "Control" }, "s", function () awful.util.spawn("skype") end),
     awful.key({ superkey ,"Control" }, "t", function () awful.util.spawn("teamspeak3") end),
