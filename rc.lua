@@ -108,7 +108,8 @@ gamesubmenu = {
 	{ "GuildWars2", function() awful.util.spawn_with_shell("wine ~/Games/GuildWars2/Gw2.exe") end},
 	{ "Teeworlds", "teeworlds" },
 	{ "Spiral Knights", function() awful.util.spawn_with_shell("sh /home/troopa/Games/spiral/executer.sh") end},
-	{ "Minecraft", "sh /home/troopa/Games/Minecraft/mincrafter.sh"} 
+	{ "Minecraft", "sh /home/troopa/Games/Minecraft/mincrafter.sh"},
+	{ "Warmux", "warmux" }
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
