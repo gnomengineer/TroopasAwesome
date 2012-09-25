@@ -32,7 +32,7 @@ layouts = {
 
 -- {{ tags
 tags = { name = {"games", "system", "internet", "chat", "vai"},
-		 layout = {layouts[3],layouts[1],layouts[3],layouts[1],layouts[4]}
+		 layout = {layouts[3],layouts[1],layouts[3],layouts[1],layouts[3]}
 	   }
 for s = 1, screen.count() do
     tags[s]  = awful.tag(tags.name, s, tags.layout)
@@ -105,7 +105,7 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 -- menu for my games
 gamesubmenu = {
 	{ "PlayonLinux", "playonlinux" },
-	{ "GuildWars2", function() awful.util.spawn_with_shell("wine ~/Games/GuildWars2/Gw2.exe") end},
+	{ "GuildWars2", "wine ~/Games/GuildWars2/Gw2.exe -dx9single" },
 	{ "Teeworlds", "teeworlds" },
 	{ "Spiral Knights", function() awful.util.spawn_with_shell("sh /home/troopa/Games/spiral/executer.sh") end},
 	{ "Minecraft", "sh /home/troopa/Games/Minecraft/mincrafter.sh"},
@@ -135,10 +135,6 @@ chatsubmenu = {
 -- menu for ALL applications from multimedia (video,audio,image)
 mediasubmenu = {
 	{ "VLC", "vlc" },
-	{ "Musicplayer", function() awful.util.spawn_with_shell("mocp") end},
-	{ "Openshot", "openshot" },
-	{ "Audacity", "audacity" },
-	{ "Recorder", "gtk-recordMyDesktop" }, --this is only a call without any properties
 	{ "GIMP", "gimp" }
 }
 mainmenu = awful.menu({ items = { { "games", gamesubmenu },
