@@ -8,7 +8,7 @@ require("awful.autofocus")
 require("beautiful")
 -- extra libraries
 require("naughty")
-require("vicious")
+vicious = require("vicious")
 -- }}
 
 -- {{ variable definitions
@@ -92,7 +92,6 @@ awesomemenu = {
 }
 
 powermenu = awful.menu({ items = {	{ "power off", "gedit" },
-									{ "logout", "gedit"},
 									{ "terminal", terminal},
 									{ "awesome", awesomemenu }
 								 }
@@ -105,19 +104,12 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 -- menu for my games
 gamesubmenu = {
 	{ "PlayonLinux", "playonlinux" },
-	{ "GuildWars2", "wine ~/Games/GuildWars2/Gw2.exe -dx9single" },
-	{ "Teeworlds", "teeworlds" },
-	{ "Spiral Knights", function() awful.util.spawn_with_shell("sh /home/troopa/Games/spiral/executer.sh") end},
-	{ "Minecraft", "sh /home/troopa/Games/Minecraft/mincrafter.sh"},
-	{ "Warmux", "warmux" }
+	{ "GuildWars2", "wine ~/Games/GuildWars2/Gw2.exe -dx9single" }
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
 	{ "GEdit", "gedit" },
-	{ "VirtualBox", "virtualbox" },
 	{ "Sound", "pavucontrol" },
-	{ "FileManager", "pcmanfm" },
-	{ "Calculator", "galculator" },
 	{ "Teamviewer", "teamviewer7" }
 }
 -- menu for internet applications
@@ -152,7 +144,7 @@ menulauncher = awful.widget.launcher({ image = image(beautiful.menulauncher),
 -- }
 
 --{ context menu, rightclick on the tasklist
-contextmenu = awful.menu({ items = { { "close", "bla" }
+contextmenu = awful.menu({ items = { { "close", function (c) c:kill() end }
 								   }
 						})
 -- }
@@ -255,6 +247,11 @@ keybindings = awful.util.table.join(
     awful.key({ superkey , "Control" }, "r", function () awful.util.spawn("gtk-recordMyDesktop") end)
 )
 
+clientkeys = awful.util.table.join(
+	awful.key({ superkey , "Shift" }, "c", function (c) c:kill() end),
+	awful.key({ superkey , "Shift" }, "r", function (c) c:redraw() end)
+)
+
 -- switch tags with number
 keynumber = 0
 for s = 1, screen.count() do
@@ -280,6 +277,17 @@ mousebuttons = awful.util.table.join(
 )
 -- set all keybindings
 root.keys(keybindings)
+-- }}
+
+-- {{ rules
+awful.rules.rules = {
+	{ rule = { },
+	  properties = { border_width = beautiful.border_width,
+					 border_color = beuatiful.border_normal,
+					 focus = true,
+					 keys = clientkeys,
+					 buttons = mousebuttons } }
+}
 -- }}
 
 -- {{ signals
