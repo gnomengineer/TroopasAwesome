@@ -110,7 +110,8 @@ gamesubmenu = {
 syssubmenu = {
 	{ "GEdit", "gedit" },
 	{ "Sound", "pavucontrol" },
-	{ "Teamviewer", "teamviewer7" }
+	{ "Teamviewer", "teamviewer7" },
+	{ "Q4wine", "q4wine" }
 }
 -- menu for internet applications
 netsubmenu = {
