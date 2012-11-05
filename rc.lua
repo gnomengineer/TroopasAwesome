@@ -91,7 +91,7 @@ awesomemenu = {
 	{ "quit", awesome.quit}
 }
 
-powermenu = awful.menu({ items = {	{ "power off", "gedit" },
+powermenu = awful.menu({ items = {	{ "power off", "shutdown -h now" },
 									{ "terminal", terminal},
 									{ "awesome", awesomemenu }
 								 }
@@ -104,7 +104,7 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 -- menu for my games
 gamesubmenu = {
 	{ "PlayonLinux", "playonlinux" },
-	{ "GuildWars2", "wine ~/Games/GuildWars2/Gw2.exe -dx9single" }
+	{ "GuildWars2", "start.sh" }
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
@@ -117,7 +117,7 @@ syssubmenu = {
 netsubmenu = {
 	{ "Browser", "chromium" },
 	{ "E-Mail", "thunderbird" },
-	{ "Deluge", "deluge" }
+	{ "Torrent", "transmission-qt" }
 }
 -- menu for applications with them i can chat/talk to another people
 chatsubmenu = {
@@ -281,14 +281,14 @@ root.keys(keybindings)
 -- }}
 
 -- {{ rules
-awful.rules.rules = {
-	{ rule = { },
-	  properties = { border_width = beautiful.border_width,
-					 border_color = beuatiful.border_normal,
-					 focus = true,
-					 keys = clientkeys,
-					 buttons = mousebuttons } }
-}
+--awful.rules.rules = {
+--	{ rule = { },
+--	  properties = { border_width = beautiful.border_width,
+--					 border_color = beuatiful.border_normal,
+--					 focus = true,
+--					 keys = clientkeys,
+--					 buttons = mousebuttons } }
+--}
 -- }}
 
 -- {{ signals
