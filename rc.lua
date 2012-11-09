@@ -103,8 +103,7 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 -- { menu launcher 
 -- menu for my games
 gamesubmenu = {
-	{ "PlayonLinux", "playonlinux" },
-	{ "GuildWars2", "start.sh" }
+	{ "GuildWars2", function() awful.util.spawn(terminal .. " -e gw2start") end }
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
@@ -122,8 +121,7 @@ netsubmenu = {
 -- menu for applications with them i can chat/talk to another people
 chatsubmenu = {
 	{ "Skype", "skype" },
-	{ "IRC", function() awful.util.spawn_with_shell("irssi") end}, --this is only a call without any properties
-	{ "Teamspeak3", "teamspeak3" } 
+	{ "IRC", function() awful.util.spawn(terminal .. " -e irssi") end} --this is only a call without any properties
 }
 -- menu for ALL applications from multimedia (video,audio,image)
 mediasubmenu = {
@@ -236,16 +234,20 @@ keybindings = awful.util.table.join(
     awful.key({ superkey, }, "w", function () mainmenu:show({ keygrabber = true }) end),
     --awful.key({ superkey }, "l", function () slim.lock end)
     awful.key({ superkey, }, "p", function () powermenu:show({ keygrabber = true }) end),
-    awful.key({ superkey, }, "e", function () awful.util.spawn("pcmanfm") end),
-    --awful.key({ superkey, }, "r", function () awful.util.spawn("executer") end),
-	awful.key({}, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/ 2>/dev/null'") end),
+    awful.key({ superkey, }, "e", function () awful.util.spawn("ranger") end),
+    awful.key({ superkey, }, "r", function () awful.prompt.run({ prompt = "Run in terminal: " },
+												mypromptbox[mouse.screen].widget,
+												function (...) awful.util.spawn(terminal .. " -e " .. ...) end,
+												awful.completion.shell,
+												awful.util.getdir("cache") .. "/history")
+								  end),
+	awful.key({}, "Print", function () awful.util.spawn(terminal .. " -e screenshot.sh") end),
 
 	awful.key({ superkey, "Control" }, "s", function () awful.util.spawn("skype") end),
-    awful.key({ superkey ,"Control" }, "t", function () awful.util.spawn("teamspeak3") end),
+    --awful.key({ superkey ,"Control" }, "t", function () awful.util.spawn("teamspeak3") end),
     awful.key({ superkey ,"Control" }, "c", function () awful.util.spawn("irssi") end),
     awful.key({ superkey , "Control" }, "b", function () awful.util.spawn("chromium") end),
-    awful.key({ superkey , "Control" }, "m", function () awful.util.spawn("thunderbird") end),
-    awful.key({ superkey , "Control" }, "r", function () awful.util.spawn("gtk-recordMyDesktop") end)
+    awful.key({ superkey , "Control" }, "m", function () awful.util.spawn("thunderbird") end)
 )
 
 clientkeys = awful.util.table.join(
