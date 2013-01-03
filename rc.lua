@@ -1,5 +1,6 @@
 --@TODO clients aren't resizeable and moveable
 --@TODO rightclick context menu to close a window/client
+--@TODO run application which are started in terminal (i.e. irssi)
 -- {{ libraries
 require("awful")
 require("awful.rules")
@@ -55,7 +56,7 @@ systray = widget({ type = "systray" })
 
 -- { cpu usage and temperature
 cpuicon = widget({ type = "imagebox" })
-cpuicon.image = image(beautiful.cpu) --need a new symbol in the theme
+cpuicon.image = image(beautiful.cpu) 
 -- initialize
 cpu = widget({ type = "textbox" })
 temperature = widget({ type = "textbox" })
@@ -66,7 +67,7 @@ vicious.register(temperature, vicious.widgets.thermal, "$1C ", 42, {"atk0110", "
 
 -- { memory usage
 memicon = widget({ type = "imagebox" })
-memicon.image = image(beautiful.memory) --need a new symbol in the theme
+memicon.image = image(beautiful.memory) 
 -- initialize
 memory = widget({ type = "textbox" })
 -- register
@@ -103,7 +104,7 @@ powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
 -- { menu launcher 
 -- menu for my games
 gamesubmenu = {
-	{ "GuildWars2", function() awful.util.spawn(terminal .. " -e gw2start") end }
+	{ "GuildWars2", terminal .. " -e gw2" }
 }
 -- menu for all programs which are not categorized
 syssubmenu = {
@@ -121,11 +122,12 @@ netsubmenu = {
 -- menu for applications with them i can chat/talk to another people
 chatsubmenu = {
 	{ "Skype", "skype" },
-	{ "IRC", function() awful.util.spawn(terminal .. " -e irssi") end} --this is only a call without any properties
+	{ "IRC", terminal .. " -e irssi" },
+	{ "Mumble", "mumble" }
 }
 -- menu for ALL applications from multimedia (video,audio,image)
 mediasubmenu = {
-	{ "VLC", "vlc" },
+	{ "MPlayer", "smplayer"},
 	{ "GIMP", "gimp" }
 }
 mainmenu = awful.menu({ items = { { "games", gamesubmenu },
@@ -234,17 +236,17 @@ keybindings = awful.util.table.join(
     awful.key({ superkey, }, "w", function () mainmenu:show({ keygrabber = true }) end),
     --awful.key({ superkey }, "l", function () slim.lock end)
     awful.key({ superkey, }, "p", function () powermenu:show({ keygrabber = true }) end),
-    awful.key({ superkey, }, "e", function () awful.util.spawn("ranger") end),
+    --awful.key({ superkey, }, "e", terminal .. "-e ranger"),--function () awful.util.spawn("ranger") end),
     awful.key({ superkey, }, "r", function () awful.prompt.run({ prompt = "Run in terminal: " },
 												mypromptbox[mouse.screen].widget,
 												function (...) awful.util.spawn(terminal .. " -e " .. ...) end,
 												awful.completion.shell,
 												awful.util.getdir("cache") .. "/history")
 								  end),
-	awful.key({}, "Print", function () awful.util.spawn(terminal .. " -e screenshot.sh") end),
+	awful.key({}, "Pause", terminal .. " -e screen"),
 
 	awful.key({ superkey, "Control" }, "s", function () awful.util.spawn("skype") end),
-    --awful.key({ superkey ,"Control" }, "t", function () awful.util.spawn("teamspeak3") end),
+    awful.key({ superkey ,"Control" }, "t", function () awful.util.spawn("mumble") end),
     awful.key({ superkey ,"Control" }, "c", function () awful.util.spawn("irssi") end),
     awful.key({ superkey , "Control" }, "b", function () awful.util.spawn("chromium") end),
     awful.key({ superkey , "Control" }, "m", function () awful.util.spawn("thunderbird") end)
