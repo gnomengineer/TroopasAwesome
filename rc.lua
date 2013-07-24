@@ -93,6 +93,7 @@ awesomemenu = {
 }
 
 powermenu = awful.menu({ items = {	{ "power off", "shutdown -h now" },
+									{ "reboot", "shutdown -r now" },
 									{ "terminal", terminal},
 									{ "awesome", awesomemenu }
 								 }
@@ -123,7 +124,8 @@ netsubmenu = {
 chatsubmenu = {
 	{ "Skype", "skype" },
 	{ "IRC", terminal .. " -e irssi" },
-	{ "Mumble", "mumble" }
+	{ "Mumble", "mumble" },
+	{ "Teamspeak", "teamspeak3" }
 }
 -- menu for ALL applications from multimedia (video,audio,image)
 mediasubmenu = {
