@@ -1,15 +1,16 @@
 --@TODO clients aren't resizeable and moveable
 --@TODO rightclick context menu to close a window/client
 --@TODO run application which are started in terminal (i.e. irssi)
+--@TODO make certain changes causing by updating from 3.4 to 3.5
 -- {{ libraries
-require("awful")
-require("awful.rules")
+local awful = require("awful")
+awful.rules = require("awful.rules")
 require("awful.autofocus")
 -- theme library
-require("beautiful")
+local beautiful = require("beautiful")
 -- extra libraries
-require("naughty")
-vicious = require("vicious")
+local naughty = require("naughty")
+local vicious = require("vicious")
 -- }}
 
 -- {{ variable definitions
@@ -42,49 +43,49 @@ end
 
 -- {{ widgets
 -- { separator
-separator = widget({ type = "imagebox" })
-separator.image = image(beautiful.separator) --need a new symbol in the theme
+--separator = wibox.widget.imagebox()--widget({ type = "imagebox" })
+--separator.image = image(beautiful.separator) --need a new symbol in the theme
 -- }
 
 -- { textclock
-clock = awful.widget.textclock({ align = "right" })
+clock = awful.widget.textclock()
 -- }
 
 -- { systray
-systray = widget({ type = "systray" })
+systray = wibox.widget.systray()--widget({ type = "systray" })
 -- }
 
--- { cpu usage and temperature
-cpuicon = widget({ type = "imagebox" })
-cpuicon.image = image(beautiful.cpu) 
--- initialize
-cpu = widget({ type = "textbox" })
-temperature = widget({ type = "textbox" })
--- register
-vicious.register(cpu, vicious.widgets.cpu, "$1%")
-vicious.register(temperature, vicious.widgets.thermal, "$1C ", 42, {"atk0110", "core"})
--- }
+---- { cpu usage and temperature
+--cpuicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
+--cpuicon.image = image(beautiful.cpu) 
+---- initialize
+--cpu = wibox.widget.textbox()--widget({ type = "textbox" })
+--temperature = wibox.widget.textbox()--widget({ type = "textbox" })
+---- register
+--vicious.register(cpu, vicious.widgets.cpu, "$1%")
+--vicious.register(temperature, vicious.widgets.thermal, "$1C ", 42, {"atk0110", "core"})
+---- }
 
--- { memory usage
-memicon = widget({ type = "imagebox" })
-memicon.image = image(beautiful.memory) 
--- initialize
-memory = widget({ type = "textbox" })
--- register
-vicious.register(memory, vicious.widgets.mem, "$1%", 13)
--- }
+---- { memory usage
+--memicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
+--memicon.image = image(beautiful.memory) 
+---- initialize
+--memory = wibox.widget.textbox()--widget({ type = "textbox" })
+---- register
+--vicious.register(memory, vicious.widgets.mem, "$1%", 13)
+---- }
 
--- { upload/download rate
-downicon = widget({ type = "imagebox" })
-upicon = widget({ type = "imagebox" })
-downicon.image = image(beautiful.download)
-upicon.image = image(beautiful.upload)
--- initialize
-netwidget = widget({ type = "textbox" })
--- register
-vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb} | </span><span color="'
- .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
--- }
+---- { upload/download rate
+--downicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
+--upicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
+--downicon.image = image(beautiful.download)
+--upicon.image = image(beautiful.upload)
+---- initialize
+--netwidget = wibox.widget.textbox()--widget({ type = "imagebox" })
+---- register
+--vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb} | </span><span color="'
+-- .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
+---- }
 
 -- { launcher for power off etc
 awesomemenu = {
@@ -98,21 +99,16 @@ powermenu = awful.menu({ items = {	{ "power off", "shutdown -h now" },
 									{ "awesome", awesomemenu }
 								 }
 					   })
-powerlauncher = awful.widget.launcher({ image = image(beautiful.powerlauncher),
+powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 										menu = powermenu })
 -- }
 
 -- { menu launcher 
--- menu for my games
-gamesubmenu = {
-	{ "GuildWars2", terminal .. " -e gw2" }
-}
 -- menu for all programs which are not categorized
 syssubmenu = {
 	{ "GEdit", "gedit" },
-	{ "Sound", "pavucontrol" },
-	{ "Teamviewer", "teamviewer7" },
-	{ "Q4wine", "q4wine" }
+	{ "Sound", "pavucontrolu" },
+	{ "Eclipse", "eclipse" }
 }
 -- menu for internet applications
 netsubmenu = {
@@ -124,32 +120,33 @@ netsubmenu = {
 chatsubmenu = {
 	{ "Skype", "skype" },
 	{ "IRC", terminal .. " -e irssi" },
-	{ "Mumble", "mumble" },
 	{ "Teamspeak", "teamspeak3" }
 }
 -- menu for ALL applications from multimedia (video,audio,image)
 mediasubmenu = {
 	{ "MPlayer", "smplayer"},
-	{ "GIMP", "gimp" }
+	{ "GIMP", "gimp" },
+	{ "Cinelerra", "cinelerra" },
+	{ "Audacity", "audacity" },
+	{ "Pencil", "pencil" }
 }
-mainmenu = awful.menu({ items = { { "games", gamesubmenu },
-								  { "system", syssubmenu },
+mainmenu = awful.menu({ items = { { "system", syssubmenu },
 								  { "internet", netsubmenu },
 								  { "chats", chatsubmenu },
 								  { "multimedia", mediasubmenu }
 								}
 					 })
 
-menulauncher = awful.widget.launcher({ image = image(beautiful.menulauncher),
+menulauncher = awful.widget.launcher({ image = beautiful.menulauncher,
 									   menu = mainmenu
 									})
 
 -- }
 
 --{ context menu, rightclick on the tasklist
-contextmenu = awful.menu({ items = { { "close", function (c) c:kill() end }
-								   }
-						})
+--contextmenu = awful.menu({ items = { { "close", function (c) c:kill() end }
+--								   }
+--						})
 -- }
 -- }}
 
