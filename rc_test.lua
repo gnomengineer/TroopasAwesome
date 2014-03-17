@@ -6,6 +6,8 @@
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
+-- Widget handling library
+local wibox = require("wibox")
 -- theme library
 local beautiful = require("beautiful")
 -- extra libraries
@@ -62,7 +64,7 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 -- menu for all programs which are not categorized
 syssubmenu = {
 	{ "GEdit", "gedit" },
-	{ "Sound", "pavucontrolu" },
+	{ "Sound", "pavucontrol" },
 	{ "Eclipse", "eclipse" }
 }
 -- menu for internet applications
@@ -81,7 +83,6 @@ chatsubmenu = {
 mediasubmenu = {
 	{ "MPlayer", "smplayer"},
 	{ "GIMP", "gimp" },
-	{ "Cinelerra", "cinelerra" },
 	{ "Audacity", "audacity" },
 	{ "Pencil", "pencil" }
 }
@@ -178,12 +179,26 @@ for s = 1, screen.count() do
 	w_wibox[s] = awful.wibox({ position = "top", screen = s })
 
 	-- variable for leftside content of wibox
+	local leftside = wibox.layout.fixed.horizontal()
+	leftside:add(menulauncher)
+	leftside:add(powerlauncher)
+	leftside:add(w_taglist[s])
+	--leftside:add()--prompt box?
 
 	-- variable for rightside content of wibox
+	local rightside = wibox.layout.fixed.horizontal()
+	if s == 1 then rightside:add(wibox.widget.systray()) end --systray
+	rightside:add(w_textclock)--clock
+	rightside:add(w_layoutbox[s])
 
 	-- adding left, middle and rightside to wibox	
-end
+	local layout = wibox.layout.align.horizontal()
+	layout:set_left(leftside)
+	layout:set_middle(w_tasklist[s])
+	layout:set_right(rightside)
 
+	w_wibox[s]:set_widget(layout)
+end
 
 
 -- { separator
@@ -222,3 +237,10 @@ end
 -- .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
 ---- }
 
+--{{ mouse bindings
+root.buttons(awful.util.table.join(
+	awful.button({}, 3, function () powermenu:toggle() end),
+	awful.button({}, 4, awful.tag.viewnext),
+	awful.button({}, 5, awful.tag.viewprev)
+))
+--}}
