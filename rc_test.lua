@@ -1,7 +1,27 @@
---@TODO clients aren't resizeable and moveable
+--@TODO clients aren't resizeable and moveable --> rules->properties
 --@TODO rightclick context menu to close a window/client
 --@TODO run application which are started in terminal (i.e. irssi)
---@TODO make certain changes causing by updating from 3.4 to 3.5
+--@TODO modify the vicious modules to V3.5
+
+-------------------------------------------------------
+--- author: Daniel Foehn aka Don Troopa
+--- last edit: 18 Mar 2014
+--- e-mail: --
+--- description: a personal configuration of my
+--- 	awesome tiling manager. I configured myself some
+---		vicious widgets and key shortcuts. I also changed
+---		the menu structure to my needs.
+---
+---
+--- NOTE:
+--- feel free to use this configuration. for individual
+--- changes you should change the menu part starting
+--- on line 66.
+--- for individual key combination start changing on
+--- line 268.
+--- also line 44 with the terminal variable.
+-------------------------------------------------------
+
 -- {{ libraries
 local awful = require("awful")
 awful.rules = require("awful.rules")
@@ -244,3 +264,57 @@ root.buttons(awful.util.table.join(
 	awful.button({}, 5, awful.tag.viewprev)
 ))
 --}}
+
+--{{ Key bindings
+--globalkeys are the key combination that work on the display manager itself
+globalkeys = awful.util.table.join(
+	awful.key({ modkey, }, "t", awful.util.spawn(terminal)),
+	awful.key({ modkey, }, "s", awful.util.spawn("skype")),
+	awful.key({ modkey, }, "p", awful.util.spawn("pavucontrol")),
+	awful.key({ modkey, }, "b", awful.util.spawn("chromium")),
+	awful.key({ modkey, "Shift"}, "t", awful.util.spawn("teamspeak3")),
+	--(optional) awful.key({ modkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
+	--key binding for restarting and quitting the display manager
+	awful.key({ modkey, "Control", "Shift"}, "r", awesome.restart),
+	awful.key({ modkey, "Control", "Shift"}, "q", awesome.quit),
+	--key bindings for easy access to the layouts
+	awful.key({ modkey, }, "space", function () awful.layout.inc(layouts, 1) end),
+	awful.key({ modkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
+)
+
+--placeholder for clientkeys. key combination for specific window usage
+
+
+--implement modkey + numbkey change functionn
+for i = 1, 9 do
+	globalkeys = awful.util.table.join(
+		globalkeys,
+		--function to change the tag with modkey + number
+		awful.key({ modkey }, "#" .. i + 9,
+			function ()
+				local screen = mouse.screen
+				local tag = awful.tag.gettags(screen)[i]
+				if tag then
+					awful.tag.viewonly(tag)
+				end
+			end),
+		--function to toggle 1..* tags on 1 screen
+		awful.key({ modkey, "Control" }, "#" .. i + 9,
+			function ()
+				local screen = mouse.screen
+				local tag = awful.tag.gettags(screen)[i]
+				if tag then
+					awful.tag.viewtoggle(tag)
+				end
+			end)
+		)
+end
+
+--implement move and resize of windows
+--also called clientbuttons. (mouse) buttons for specific window usage
+
+--set the keys to the manager
+root.keys(globalkeys)
+--}}
+
+--{{ rule definition (how does certain thing react with the awesome)
