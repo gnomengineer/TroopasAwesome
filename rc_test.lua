@@ -2,6 +2,7 @@
 --@TODO rightclick context menu to close a window/client
 --@TODO run application which are started in terminal (i.e. irssi)
 --@TODO modify the vicious modules to V3.5
+--@TODO fix key binding
 
 -------------------------------------------------------
 --- author: Daniel Foehn aka Don Troopa
@@ -55,8 +56,8 @@ layouts = {
 -- }}
 
 -- {{ tags
-tags = { name = {"games", "system", "internet", "chat", "vai"},
-		 layout = {layouts[3],layouts[1],layouts[3],layouts[1],layouts[3]}
+tags = { name = {"general", "internet", "chat", "vai"},
+		 layout = {layouts[1],layouts[3],layouts[1],layouts[3]}
 	   }
 for s = 1, screen.count() do
     tags[s]  = awful.tag(tags.name, s, tags.layout)
@@ -259,7 +260,7 @@ end
 
 --{{ mouse bindings
 root.buttons(awful.util.table.join(
-	awful.button({}, 3, function () powermenu:toggle() end),
+	awful.button({}, 3, function () mainmenu:toggle() end),
 	awful.button({}, 4, awful.tag.viewnext),
 	awful.button({}, 5, awful.tag.viewprev)
 ))
@@ -268,29 +269,39 @@ root.buttons(awful.util.table.join(
 --{{ Key bindings
 --globalkeys are the key combination that work on the display manager itself
 globalkeys = awful.util.table.join(
-	awful.key({ modkey, }, "t", awful.util.spawn(terminal)),
-	awful.key({ modkey, }, "s", awful.util.spawn("skype")),
-	awful.key({ modkey, }, "p", awful.util.spawn("pavucontrol")),
-	awful.key({ modkey, }, "b", awful.util.spawn("chromium")),
-	awful.key({ modkey, "Shift"}, "t", awful.util.spawn("teamspeak3")),
-	--(optional) awful.key({ modkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
+--	awful.key({ superkey, }, "t", awful.util.spawn(terminal)),
+--	awful.key({ superkey, }, "s", awful.util.spawn("skype")),
+--	awful.key({ superkey, }, "p", awful.util.spawn("pavucontrol")),
+--	awful.key({ superkey, }, "b", awful.util.spawn("chromium")),
+--	awful.key({ superkey, "Shift"}, "t", awful.util.spawn("teamspeak3")),
+	--(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
 	--key binding for restarting and quitting the display manager
-	awful.key({ modkey, "Control", "Shift"}, "r", awesome.restart),
-	awful.key({ modkey, "Control", "Shift"}, "q", awesome.quit),
+--	awful.key({ superkey, control, "Shift"}, "r", awesome.restart),
+--	awful.key({ superkey, control, "Shift"}, "q", awesome.quit),
 	--key bindings for easy access to the layouts
-	awful.key({ modkey, }, "space", function () awful.layout.inc(layouts, 1) end),
-	awful.key({ modkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
+--	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
+--	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
 )
 
 --placeholder for clientkeys. key combination for specific window usage
+clientkeys = awful.util.table.join(
+	awful.key({ superkey, altkey }, "c", function (c) c:kill() end),
+	awful.key({ superkey, }, "f", function (c) c.fullscreen = not c.fullscreen end),
+	awful.key({ superkey, }, "n", function (c) c.minimized = true end),
+	awful.key({ superkey, }, "m", 
+		function (c) 
+			c.maximized_horizontal = not c.maximized_horizontal
+			c.maximized_vertical = not c.maximized_vertical
+		end
+	)
+)
 
-
---implement modkey + numbkey change functionn
+--implement superkey + numbkey change functionn
 for i = 1, 9 do
 	globalkeys = awful.util.table.join(
 		globalkeys,
-		--function to change the tag with modkey + number
-		awful.key({ modkey }, "#" .. i + 9,
+		--function to change the tag with superkey + number
+		awful.key({ superkey }, "#" .. i + 9,
 			function ()
 				local screen = mouse.screen
 				local tag = awful.tag.gettags(screen)[i]
@@ -299,7 +310,7 @@ for i = 1, 9 do
 				end
 			end),
 		--function to toggle 1..* tags on 1 screen
-		awful.key({ modkey, "Control" }, "#" .. i + 9,
+		awful.key({ superkey, "Control" }, "#" .. i + 9,
 			function ()
 				local screen = mouse.screen
 				local tag = awful.tag.gettags(screen)[i]
@@ -312,9 +323,24 @@ end
 
 --implement move and resize of windows
 --also called clientbuttons. (mouse) buttons for specific window usage
+clientbuttons = awful.util.table.join(
+	awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+	awful.button({ superkey }, 1, awful.mouse.client.move),
+	awful.button({ superkey }, 3, awful.mouse.client.resize)
+)
 
 --set the keys to the manager
 root.keys(globalkeys)
 --}}
 
 --{{ rule definition (how does certain thing react with the awesome)
+awful.rules.rules = {
+	-- client rules (client = window=)
+	{ rule = { },
+	  properties = { border_width = nil,
+					 border_color = nil,
+					 focus = awful.client.focus.filter,
+					 keys = clientkeys,
+					 buttons = clientbuttons}
+	}
+}
