@@ -131,6 +131,41 @@ menulauncher = awful.widget.launcher({ image = beautiful.menulauncher,
 -- create textclock widget
 w_textclock = awful.widget.textclock()
 
+-- { separator
+separator = wibox.widget.imagebox()--widget({ type = "imagebox" })
+separator:set_image(beautiful.separator)
+-- }
+---- { cpu usage and temperature
+cpuicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
+cpuicon:set_image(beautiful.cpu)
+---- initialize
+cpu = wibox.widget.textbox()--widget({ type = "textbox" })
+--temperature = wibox.widget.textbox()--widget({ type = "textbox" })
+---- register
+vicious.register(cpu, vicious.widgets.cpu, "$1%")
+--vicious.register(temperature, vicious.widgets.thermal, "$1C ", 42, {"atk0110", "core"})
+---- }
+
+---- { memory usage
+memicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
+memicon:set_image(beautiful.memory)
+---- initialize
+memory = wibox.widget.textbox()--widget({ type = "textbox" })
+---- register
+vicious.register(memory, vicious.widgets.mem, "$1%", 13)
+---- }
+
+---- { upload/download rate
+downicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
+upicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
+downicon:set_image(beautiful.download)
+upicon:set_image(beautiful.upload)
+---- initialize
+netwidget = wibox.widget.textbox()--widget({ type = "imagebox" })
+---- register
+vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb} | </span><span color="' .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
+---- }
+
 -- initialize a wibox for each screen
 w_wibox = {}
 w_promptbox = {}
@@ -208,6 +243,22 @@ for s = 1, screen.count() do
 
 	-- variable for rightside content of wibox
 	local rightside = wibox.layout.fixed.horizontal()
+	--add vicious widget to the wibox
+	--add cpu and icon from vicious
+	rightside:add(cpuicon)
+	rightside:add(cpu)
+	rightside:add(separator)
+	--add memory and icon from vicious
+	rightside:add(memicon)
+	rightside:add(memory)
+	rightside:add(separator)
+	--add down- and upload rate
+	rightside:add(downicon)
+	rightside:add(netwidget)
+	rightside:add(upicon)
+	rightside:add(separator)
+
+	--basic widget
 	if s == 1 then rightside:add(wibox.widget.systray()) end --systray
 	rightside:add(w_textclock)--clock
 	rightside:add(w_layoutbox[s])
@@ -220,43 +271,7 @@ for s = 1, screen.count() do
 
 	w_wibox[s]:set_widget(layout)
 end
-
-
--- { separator
---separator = wibox.widget.imagebox()--widget({ type = "imagebox" })
---separator.image = image(beautiful.separator) --need a new symbol in the theme
--- }
----- { cpu usage and temperature
---cpuicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
---cpuicon.image = image(beautiful.cpu) 
----- initialize
---cpu = wibox.widget.textbox()--widget({ type = "textbox" })
---temperature = wibox.widget.textbox()--widget({ type = "textbox" })
----- register
---vicious.register(cpu, vicious.widgets.cpu, "$1%")
---vicious.register(temperature, vicious.widgets.thermal, "$1C ", 42, {"atk0110", "core"})
----- }
-
----- { memory usage
---memicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
---memicon.image = image(beautiful.memory) 
----- initialize
---memory = wibox.widget.textbox()--widget({ type = "textbox" })
----- register
---vicious.register(memory, vicious.widgets.mem, "$1%", 13)
----- }
-
----- { upload/download rate
---downicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
---upicon = wibox.widget.imagebox() --widget({ type = "imagebox" })
---downicon.image = image(beautiful.download)
---upicon.image = image(beautiful.upload)
----- initialize
---netwidget = wibox.widget.textbox()--widget({ type = "imagebox" })
----- register
---vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb} | </span><span color="'
--- .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
----- }
+--}}
 
 --{{ mouse bindings
 root.buttons(awful.util.table.join(
