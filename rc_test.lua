@@ -85,8 +85,7 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 -- menu for all programs which are not categorized
 syssubmenu = {
 	{ "GEdit", "gedit" },
-	{ "Sound", "pavucontrol" },
-	{ "Eclipse", "eclipse" }
+	{ "Sound", "pavucontrol" }
 }
 -- menu for internet applications
 netsubmenu = {
@@ -104,12 +103,17 @@ chatsubmenu = {
 mediasubmenu = {
 	{ "MPlayer", "smplayer"},
 	{ "GIMP", "gimp" },
-	{ "Audacity", "audacity" },
-	{ "Pencil", "pencil" }
+	{ "Audacity", "audacity" }
+}
+-- menu for development
+develmenu = {
+	{ "Eclipse", "eclipse" },
+	{ "GUI Designer", "pencil" }
 }
 mainmenu = awful.menu({ items = { { "system", syssubmenu },
 								  { "internet", netsubmenu },
 								  { "chats", chatsubmenu },
+								  { "development", develmenu },
 								  { "multimedia", mediasubmenu }
 								}
 					 })
