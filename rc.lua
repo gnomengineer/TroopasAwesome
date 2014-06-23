@@ -73,7 +73,6 @@ awesomemenu = {
 
 powermenu = awful.menu({ items = {	{ "power off", "shutdown -h now" },
 									{ "reboot", "shutdown -r now" },
-									{ "terminal", terminal},
 									{ "awesome", awesomemenu }
 								 }
 					   })
@@ -85,7 +84,8 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 -- menu for all programs which are not categorized
 syssubmenu = {
 	{ "GEdit", "gedit" },
-	{ "Sound", "pavucontrol" }
+	{ "Sound", "pavucontrol" },
+	{ "Eclipse", "eclipse" }
 }
 -- menu for internet applications
 netsubmenu = {
@@ -103,18 +103,15 @@ chatsubmenu = {
 mediasubmenu = {
 	{ "MPlayer", "smplayer"},
 	{ "GIMP", "gimp" },
-	{ "Audacity", "audacity" }
+	{ "Audacity", "audacity" },
+	{ "myPaint", "mypaint" }
 }
--- menu for development
-develmenu = {
-	{ "Eclipse", "eclipse" },
-	{ "GUI Designer", "pencil" }
-}
+
 mainmenu = awful.menu({ items = { { "system", syssubmenu },
 								  { "internet", netsubmenu },
 								  { "chats", chatsubmenu },
-								  { "development", develmenu },
-								  { "multimedia", mediasubmenu }
+								  { "multimedia", mediasubmenu },
+								  { "terminal", terminal}
 								}
 					 })
 
@@ -167,7 +164,7 @@ upicon:set_image(beautiful.upload)
 ---- initialize
 netwidget = wibox.widget.textbox()--widget({ type = "imagebox" })
 ---- register
-vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${eth0 down_kb} | </span><span color="' .. beautiful.foreground_color .. '">${eth0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${enp2s3 down_kb} | </span><span color="' .. beautiful.foreground_color .. '">${enp2s3 up_kb}</span>', 3)
 ---- }
 
 -- initialize a wibox for each screen
