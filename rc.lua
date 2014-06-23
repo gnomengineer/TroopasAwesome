@@ -108,7 +108,7 @@ mediasubmenu = {
 }
 
 mainmenu = awful.menu({ items = { { "terminal", terminal },
-								  { "terminal", syssubmenu },
+								  { "system", syssubmenu },
 								  { "internet", netsubmenu },
 								  { "chats", chatsubmenu },
 								  { "multimedia", mediasubmenu }
