@@ -107,11 +107,11 @@ mediasubmenu = {
 	{ "myPaint", "mypaint" }
 }
 
-mainmenu = awful.menu({ items = { { "system", syssubmenu },
+mainmenu = awful.menu({ items = { { "terminal", terminal },
+								  { "terminal", syssubmenu },
 								  { "internet", netsubmenu },
 								  { "chats", chatsubmenu },
-								  { "multimedia", mediasubmenu },
-								  { "terminal", terminal}
+								  { "multimedia", mediasubmenu }
 								}
 					 })
 
