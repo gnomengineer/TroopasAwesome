@@ -82,10 +82,20 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 
 -- { menu launcher 
 -- menu for all programs which are not categorized
+developer = { { "UML", "umlet"},
+			  { "Eclipse", "eclipse"}
+			}
+
+office = { { "paint", "mypaint"},
+    	   { "editor", "gedit"},
+		   { "pdf", "evince"},
+		   { "office", "libreoffice"}
+		 }
+
 mainmenu = awful.menu({ items = { { "terminal", terminal },
-								  { "browser", "browser" },
-								  { "paint", "mypaint" },
-								  { "editor", "geedit" }
+								  { "browser", "chromium" },
+								  { "office", office },
+								  { "developing", developer}
 								}
 					 })
 
@@ -138,14 +148,15 @@ upicon:set_image(beautiful.upload)
 ---- initialize
 netwidget = wibox.widget.textbox()--widget({ type = "imagebox" })
 ---- register
-vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${wlp6s0 down_kb} | </span><span color="' .. beautiful.foreground_color .. '">${wlp6s0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${wlp6s0 down_kb}K | </span><span color="' .. beautiful.foreground_color .. '">${wlp6s0 up_kb}K</span>', 3)
 ---- }
 
 ---- { battery power percentage
 --baticon = wibox.widget.imagebox()
 --baticon:set_image(beautiful.battery)
 ---- initialize
---battery = wibox.widget.textbox()
+battery = wibox.widget.textbox()
+vicious.register(battery, vicious.widgets.bat, '<span color="' .. beautiful.foreground_color .. '">$2% ($3)</span>', 10, "BAT0")
 
 ---- }
 -- initialize a wibox for each screen
@@ -243,8 +254,8 @@ for s = 1, screen.count() do
 	rightside:add(separator)
 	--add battery widget
 --	rightside:add(baticon)
---	rightside:add(battery)
---	rightside:add(separator)
+	rightside:add(battery)
+	rightside:add(separator)
 
 	--basic widget
 	if s == 1 then rightside:add(wibox.widget.systray()) end --systray
@@ -272,18 +283,16 @@ root.buttons(awful.util.table.join(
 --{{ Key bindings
 --globalkeys are the key combination that work on the display manager itself
 globalkeys = awful.util.table.join(
---	awful.key({ superkey, }, "t", awful.util.spawn(terminal)),
---	awful.key({ superkey, }, "s", awful.util.spawn("skype")),
---	awful.key({ superkey, }, "p", awful.util.spawn("pavucontrol")),
---	awful.key({ superkey, }, "b", awful.util.spawn("chromium")),
---	awful.key({ superkey, "Shift"}, "t", awful.util.spawn("teamspeak3")),
-	--(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
-	--key binding for restarting and quitting the display manager
---	awful.key({ superkey, control, "Shift"}, "r", awesome.restart),
---	awful.key({ superkey, control, "Shift"}, "q", awesome.quit),
+	awful.key({ superkey, }, "t", function () awful.util.spawn(terminal) end),
+	awful.key({ superkey, }, "b", function () awful.util.spawn("chromium") end),
+    awful.key({ superkey }, "p", function () awful.util.spawn("evince") end),
+    awful.key({ superkey }, "u", function () awful.util.spawn("umlet") end),
+    awful.key({ superkey }, "e", function () awful.util.spawn("eclipse") end),
+    awful.key({ superkey }, "o", function () awful.util.spawn("libreoffice") end),
+	--awful.key({ superkey, }, "r", function () w_promptbox.new () end),
 	--key bindings for easy access to the layouts
---	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
---	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
+	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
+	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
 )
 
 --placeholder for clientkeys. key combination for specific window usage
