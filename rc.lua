@@ -85,19 +85,20 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 syssubmenu = {
 	{ "GEdit", "gedit" },
 	{ "Sound", "pavucontrol" },
+	{ "PDF", "evince" },
 	{ "Eclipse", "eclipse" }
 }
 -- menu for internet applications
 netsubmenu = {
 	{ "Browser", "chromium" },
-	{ "E-Mail", "thunderbird" },
 	{ "Torrent", "transmission-qt" }
 }
 -- menu for applications with them i can chat/talk to another people
 chatsubmenu = {
 	{ "Skype", "skype" },
 	{ "IRC", terminal .. " -e irssi" },
-	{ "Teamspeak", "teamspeak3" }
+	{ "Teamspeak", "teamspeak3" },
+	{ "Mumble", "mumble" }
 }
 -- menu for ALL applications from multimedia (video,audio,image)
 mediasubmenu = {
@@ -260,7 +261,7 @@ for s = 1, screen.count() do
 	rightside:add(separator)
 
 	--basic widget
-	if s == 1 then rightside:add(wibox.widget.systray()) end --systray
+	if s == 2 then rightside:add(wibox.widget.systray()) end --systray
 	rightside:add(w_textclock)--clock
 	rightside:add(w_layoutbox[s])
 
@@ -285,18 +286,18 @@ root.buttons(awful.util.table.join(
 --{{ Key bindings
 --globalkeys are the key combination that work on the display manager itself
 globalkeys = awful.util.table.join(
---	awful.key({ superkey, }, "t", awful.util.spawn(terminal)),
---	awful.key({ superkey, }, "s", awful.util.spawn("skype")),
+	awful.key({ superkey, }, "t", function() awful.util.spawn(terminal)end),
+	awful.key({ superkey, }, "s", function () awful.util.spawn("skype")end),
 --	awful.key({ superkey, }, "p", awful.util.spawn("pavucontrol")),
---	awful.key({ superkey, }, "b", awful.util.spawn("chromium")),
---	awful.key({ superkey, "Shift"}, "t", awful.util.spawn("teamspeak3")),
+	awful.key({ superkey, }, "b", function () awful.util.spawn("chromium")end),
+	awful.key({ superkey, "Shift"}, "t", function() awful.util.spawn("teamspeak3")end),
 	--(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
 	--key binding for restarting and quitting the display manager
 --	awful.key({ superkey, control, "Shift"}, "r", awesome.restart),
 --	awful.key({ superkey, control, "Shift"}, "q", awesome.quit),
 	--key bindings for easy access to the layouts
---	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
---	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
+	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
+	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
 )
 
 --placeholder for clientkeys. key combination for specific window usage
