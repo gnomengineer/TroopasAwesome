@@ -1,12 +1,10 @@
 --@TODO clients aren't resizeable and moveable --> rules->properties
 --@TODO rightclick context menu to close a window/client
---@TODO run application which are started in terminal (i.e. irssi)
---@TODO fix key binding
 
 -------------------------------------------------------
---- author: Daniel Foehn aka Don Troopa
---- last edit: 18 Mar 2014
---- e-mail: --
+--- author  : Daniel Foehn aka Don Troopa
+--- version : 1.0
+--- e-mail  : --
 --- description: a personal configuration of my
 --- 	awesome tiling manager. I configured myself some
 ---		vicious widgets and key shortcuts. I also changed
