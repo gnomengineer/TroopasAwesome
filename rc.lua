@@ -91,7 +91,8 @@ syssubmenu = {
 -- menu for internet applications
 netsubmenu = {
 	{ "Browser", "chromium" },
-	{ "Torrent", "transmission-qt" }
+	{ "Torrent", "transmission-qt" },
+	{ "Email", "geary" }
 }
 -- menu for applications with them i can chat/talk to another people
 chatsubmenu = {
