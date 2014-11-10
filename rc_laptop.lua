@@ -210,6 +210,7 @@ w_tasklist.buttons = awful.util.table.join(
 
 -- add everything  to the wibox and the wibox to the screen
 for s = 1, screen.count() do
+    w_promptbox[s] = awful.widget.prompt()
 	w_layoutbox[s] = awful.widget.layoutbox(s)
 	w_layoutbox[s]:buttons(awful.util.table.join(
 								awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
@@ -232,6 +233,7 @@ for s = 1, screen.count() do
 	leftside:add(menulauncher)
 	leftside:add(powerlauncher)
 	leftside:add(w_taglist[s])
+    leftside:add(w_promptbox[s])
 	leftside:add(separator)
 	--leftside:add()--prompt box?
 
@@ -289,10 +291,33 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey }, "u", function () awful.util.spawn("umlet") end),
     awful.key({ superkey }, "e", function () awful.util.spawn("eclipse") end),
     awful.key({ superkey }, "o", function () awful.util.spawn("libreoffice") end),
+    awful.key({ superkey }, "g", function () awful.util.spawn("gedit") end),
 	--awful.key({ superkey, }, "r", function () w_promptbox.new () end),
 	--key bindings for easy access to the layouts
 	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
-	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
+	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ superkey }, "r", 
+        function ()
+             awful.prompt.run(
+                { prompt = "command: " },
+                w_promptbox[mouse.screen].widget,
+                function (...) awful.util.spawn(terminal .. " -e " .. ...) end,
+                --awful.util.spawn(terminal),
+                nil,
+                awful.util.getdir("cache=") .. "/history"
+             )
+        end)
+--[[    awful.key({ superkey, "Shift" }, "x",
+        function ()
+            awful.prompt.run(
+                { prompt = "run lua: " },
+                w_promptbox[mouse.screen].widget,
+                function (...) end,
+                awful.completion.shell,
+                awful.util.getdir("cache=") .. "/history"
+            )
+        end)
+--]]
 )
 
 --placeholder for clientkeys. key combination for specific window usage
