@@ -79,38 +79,46 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 
 -- { menu launcher 
 -- menu for all programs which are not categorized
-syssubmenu = {
-	{ "GEdit", "gedit" },
-	{ "Sound", "pavucontrol" },
-	{ "PDF", "evince" },
-	{ "Eclipse", "eclipse" }
+workbench = {
+	{ "Eclipse", "eclipse" },
+    { "SailfishOS IDE", "" },
+    { "VirtualBox", "virtualbox" }
 }
 -- menu for internet applications
-netsubmenu = {
-	{ "Browser", "chromium" },
+office = {
+    { "LibreOffice", "libreoffice" },
+	{ "GEdit", "gedit" },
+	{ "PDF", "evince" },
 	{ "Torrent", "transmission-qt" },
 	{ "Email", "geary" }
 }
+-- browser menu containing common browsers for testing websites
+browser = {
+    { "Firefox", "firefox" },
+	{ "Chromium", "chromium" },
+    { "Opera", "opera" }
+}
 -- menu for applications with them i can chat/talk to another people
-chatsubmenu = {
+chat = {
 	{ "Skype", "skype" },
 	{ "IRC", terminal .. " -e irssi" },
-	{ "Teamspeak", "teamspeak3" },
 	{ "Mumble", "mumble" }
 }
 -- menu for ALL applications from multimedia (video,audio,image)
-mediasubmenu = {
+mmf = {
 	{ "MPlayer", "smplayer"},
 	{ "GIMP", "gimp" },
 	{ "Audacity", "audacity" },
-	{ "myPaint", "mypaint" }
+	{ "myPaint", "mypaint" },
+    { "VideoEdit", "" }
 }
 
-mainmenu = awful.menu({ items = { { "terminal", terminal },
-								  { "system", syssubmenu },
-								  { "internet", netsubmenu },
-								  { "chats", chatsubmenu },
-								  { "multimedia", mediasubmenu }
+mainmenu = awful.menu({ items = { 
+								  { "Workbench", workbench },
+								  { "Office", office },
+								  { "Browser", browser },
+								  { "Chat", chat },
+                                  { "MultiMedia", mmf }
 								}
 					 })
 
