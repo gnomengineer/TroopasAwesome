@@ -110,7 +110,8 @@ mmf = {
 	{ "GIMP", "gimp" },
 	{ "Audacity", "audacity" },
 	{ "myPaint", "mypaint" },
-    { "VideoEdit", "" }
+    { "VideoEditor", "kdenlive" },
+    { "Blender", "blender" }
 }
 
 mainmenu = awful.menu({ items = { 
@@ -171,7 +172,7 @@ upicon:set_image(beautiful.upload)
 ---- initialize
 netwidget = wibox.widget.textbox()--widget({ type = "imagebox" })
 ---- register
-vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${enp2s3 down_kb} | </span><span color="' .. beautiful.foreground_color .. '">${enp2s3 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${enp4s0 down_kb} | </span><span color="' .. beautiful.foreground_color .. '">${enp4s0 up_kb}</span>', 3)
 ---- }
 
 -- initialize a wibox for each screen
@@ -294,9 +295,10 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
 	awful.key({ superkey, }, "t", function() awful.util.spawn(terminal)end),
 	awful.key({ superkey, }, "s", function () awful.util.spawn("skype")end),
---	awful.key({ superkey, }, "p", awful.util.spawn("pavucontrol")),
+	awful.key({ superkey, }, "p", function () awful.util.spawn("evince") end),
 	awful.key({ superkey, }, "b", function () awful.util.spawn("chromium")end),
 	awful.key({ superkey, "Shift"}, "t", function() awful.util.spawn("teamspeak3")end),
+    awful.key({ superkey, }, "o", function() awful.util.spawn("libreoffice") end),
 	--(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
 	--key binding for restarting and quitting the display manager
 --	awful.key({ superkey, control, "Shift"}, "r", awesome.restart),
