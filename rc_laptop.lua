@@ -28,6 +28,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- theme library
 local beautiful = require("beautiful")
+local gears = require("gears")
 -- extra libraries
 local naughty = require("naughty")
 local vicious = require("vicious")
@@ -42,6 +43,9 @@ local home = os.getenv("HOME")
 local terminal = "lxterminal"
 -- theme
 beautiful.init("/usr/share/awesome/themes/igotblues/theme.lua")
+for s=1, screen.count() do
+    gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+end
 
 -- layouts
 layouts = {
@@ -146,7 +150,7 @@ upicon:set_image(beautiful.upload)
 ---- initialize
 netwidget = wibox.widget.textbox()--widget({ type = "imagebox" })
 ---- register
-vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${wlp6s0 down_kb}K | </span><span color="' .. beautiful.foreground_color .. '">${wlp6s0 up_kb}K</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="' .. beautiful.foreground_color .. '">${wlp4s0 down_kb}K | </span><span color="' .. beautiful.foreground_color .. '">${wlp4s0 up_kb}K</span>', 3)
 ---- }
 
 ---- { battery power percentage

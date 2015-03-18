@@ -28,6 +28,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- theme library
 local beautiful = require("beautiful")
+local gears = require("gears")
 -- extra libraries
 local naughty = require("naughty")
 local vicious = require("vicious")
@@ -42,6 +43,9 @@ local home = os.getenv("HOME")
 local terminal = "lxterminal"
 -- theme
 beautiful.init("/usr/share/awesome/themes/igotblues/theme.lua")
+for s=1, screen.count() do
+    gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+end
 
 -- layouts
 layouts = {
