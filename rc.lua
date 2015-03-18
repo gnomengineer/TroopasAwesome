@@ -40,7 +40,7 @@ local superkey = "Mod4"
 local control = "Control_L"
 
 local home = os.getenv("HOME")
-local terminal = "lxterminal"
+local terminal = "urxvt"
 -- theme
 beautiful.init("/usr/share/awesome/themes/igotblues/theme.lua")
 for s=1, screen.count() do
