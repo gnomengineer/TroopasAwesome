@@ -85,19 +85,27 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 -- { menu launcher 
 -- menu for all programs which are not categorized
 developer = { { "UML", "umlet"},
-			  { "Eclipse", "eclipse"}
+			  { "Eclipse", "eclipse"},
+              { "Fireforx", "firefox"}
 			}
+
+studium = { { "processing", "processing"},
+            { "audacity", "audacity"},
+            { "mathe", "sage"}
+          }
 
 office = { { "paint", "mypaint"},
     	   { "editor", "gedit"},
 		   { "pdf", "evince"},
-		   { "office", "libreoffice"}
+		   { "office", "libreoffice"},
+           { "tex", "texmaker"}
 		 }
 
 mainmenu = awful.menu({ items = { { "terminal", terminal },
 								  { "browser", "chromium" },
 								  { "office", office },
-								  { "developing", developer}
+								  { "developing", developer},
+                                  { "study", studium}
 								}
 					 })
 
@@ -294,6 +302,9 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey }, "e", function () awful.util.spawn("eclipse") end),
     awful.key({ superkey }, "o", function () awful.util.spawn("libreoffice") end),
     awful.key({ superkey }, "g", function () awful.util.spawn("gedit") end),
+    awful.key({ superkey, "Shift" }, "p", function () awful.util.spawn("mypaint") end),
+    awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
+    awful.key({ superkey }, "l", function () awful.util.spawn("texmaker") end),
 	--awful.key({ superkey, }, "r", function () w_promptbox.new () end),
 	--key bindings for easy access to the layouts
 	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),

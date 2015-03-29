@@ -301,9 +301,10 @@ globalkeys = awful.util.table.join(
 	awful.key({ superkey, }, "s", function () awful.util.spawn("skype")end),
 	awful.key({ superkey, }, "p", function () awful.util.spawn("evince") end),
 	awful.key({ superkey, }, "b", function () awful.util.spawn("chromium")end),
-	awful.key({ superkey, "Shift"}, "t", function() awful.util.spawn("teamspeak3")end),
     awful.key({ superkey, }, "o", function() awful.util.spawn("libreoffice") end),
-	--(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
+	awful.key({ superkey, "Shift" }, "p", function () awful.util.spawn("mypaint") end),
+    awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
+--(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
 	--key binding for restarting and quitting the display manager
 --	awful.key({ superkey, control, "Shift"}, "r", awesome.restart),
 --	awful.key({ superkey, control, "Shift"}, "q", awesome.quit),
