@@ -84,7 +84,6 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 -- { menu launcher 
 -- menu for all programs which are not categorized
 workbench = {
-	{ "Eclipse", "eclipse" },
     { "SailfishOS IDE", "" },
     { "VirtualBox", "virtualbox" }
 }
@@ -94,7 +93,9 @@ office = {
 	{ "GEdit", "gedit" },
 	{ "PDF", "evince" },
 	{ "Torrent", "transmission-qt" },
-	{ "Email", "geary" }
+	{ "Email", "geary" },
+    { "Tex", "texmaker" },
+    { "FTP", "filezilla" }
 }
 -- browser menu containing common browsers for testing websites
 browser = {
@@ -114,7 +115,7 @@ mmf = {
 	{ "GIMP", "gimp" },
 	{ "Audacity", "audacity" },
 	{ "myPaint", "mypaint" },
-    { "VideoEditor", "kdenlive" },
+    { "Processing", "processing" },
     { "Blender", "blender" }
 }
 
@@ -302,8 +303,12 @@ globalkeys = awful.util.table.join(
 	awful.key({ superkey, }, "p", function () awful.util.spawn("evince") end),
 	awful.key({ superkey, }, "b", function () awful.util.spawn("chromium")end),
     awful.key({ superkey, }, "o", function() awful.util.spawn("libreoffice") end),
-	awful.key({ superkey, "Shift" }, "p", function () awful.util.spawn("mypaint") end),
-    awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
+    awful.key({ superkey, }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
+    awful.key({ superkey, }, "f", function () awful.util.spawn("filezilla") end),
+	awful.key({ superkey, "Shift" }, "m", function () awful.util.spawn("mypaint") end),
+    awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
+    awful.key({ superkey, "Shift" }, "b", function () awful.util.spawn("blender") end),
+    awful.key({ superkey, "Shift" }, "p", function () awful.util.spawn("processing") end),
 --(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
 	--key binding for restarting and quitting the display manager
 --	awful.key({ superkey, control, "Shift"}, "r", awesome.restart),
