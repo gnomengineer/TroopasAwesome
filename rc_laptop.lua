@@ -57,8 +57,8 @@ layouts = {
 -- }}
 
 -- {{ tags
-tags = { name = {"1","2","3","4"},
-		 layout = {layouts[1],layouts[3],layouts[1],layouts[3]}
+tags = { name = {"1","2","3","4","5"},
+		 layout = {layouts[1],layouts[1],layouts[1],layouts[1],layouts[1]}
 	   }
 for s = 1, screen.count() do
     tags[s]  = awful.tag(tags.name, s, tags.layout)
@@ -89,23 +89,25 @@ developer = { { "UML", "umlet"},
               { "Fireforx", "firefox"}
 			}
 
-studium = { { "processing", "processing"},
-            { "audacity", "audacity"},
-            { "mathe", "sage"}
-          }
+multimedia = { { "processing", "processing"},
+               { "audacity", "audacity"},
+               { "blender", "blender"}
+             }
+
 
 office = { { "paint", "mypaint"},
     	   { "editor", "gedit"},
 		   { "pdf", "evince"},
 		   { "office", "libreoffice"},
-           { "tex", "texmaker"}
+           { "tex", "texmaker"},
+           { "mathe", "sage"}
 		 }
 
 mainmenu = awful.menu({ items = { { "terminal", terminal },
 								  { "browser", "chromium" },
 								  { "office", office },
 								  { "developing", developer},
-                                  { "study", studium}
+                                  { "mmf", multimedia }
 								}
 					 })
 
@@ -303,6 +305,7 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey }, "o", function () awful.util.spawn("libreoffice") end),
     awful.key({ superkey }, "g", function () awful.util.spawn("gedit") end),
     awful.key({ superkey, "Shift" }, "p", function () awful.util.spawn("mypaint") end),
+    awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
     awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
     awful.key({ superkey }, "l", function () awful.util.spawn("texmaker") end),
 	--awful.key({ superkey, }, "r", function () w_promptbox.new () end),
