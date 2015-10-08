@@ -86,7 +86,8 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 -- menu for all programs which are not categorized
 developer = { { "UML", "umlet"},
 			  { "Eclipse", "eclipse"},
-              { "Fireforx", "firefox"}
+              { "Fireforx", "firefox"},
+              { "VirtualBox", "virtualbox"}
 			}
 
 multimedia = { { "processing", "processing"},
@@ -100,7 +101,7 @@ office = { { "paint", "mypaint"},
 		   { "pdf", "evince"},
 		   { "office", "libreoffice"},
            { "tex", "texmaker"},
-           { "mathe", "sage"}
+           { "mathe", terminal .. " -e octave --no-gui"}
 		 }
 
 mainmenu = awful.menu({ items = { { "terminal", terminal },
