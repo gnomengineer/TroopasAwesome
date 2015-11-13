@@ -1,4 +1,3 @@
---@TODO clients aren't resizeable and moveable --> rules->properties
 --@TODO rightclick context menu to close a window/client
 
 -------------------------------------------------------
@@ -310,39 +309,46 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
     awful.key({ superkey, "Shift" }, "l", function () awful.util.spawn("texmaker") end),
     awful.key({ superkey }, "l", function () awful.util.spawn("xtrlock") end),
-	--awful.key({ superkey, }, "r", function () w_promptbox.new () end),
 	--key bindings for easy access to the layouts
 	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
 	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end),
-    awful.key({ superkey }, "r", 
-        function ()
-             awful.prompt.run(
-                { prompt = "command: " },
-                w_promptbox[mouse.screen].widget,
-                function (...) awful.util.spawn(terminal .. " -e " .. ...) end,
-                --awful.util.spawn(terminal),
-                nil,
-                awful.util.getdir("cache=") .. "/history"
-             )
-        end)
---[[    awful.key({ superkey, "Shift" }, "x",
+
+    --key bindings for direct prompts
+	awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end)
+    --[[
+    awful.key({ superkey, "Control" }, "x",
         function ()
             awful.prompt.run(
                 { prompt = "run lua: " },
                 w_promptbox[mouse.screen].widget,
-                function (...) end,
-                awful.completion.shell,
-                awful.util.getdir("cache=") .. "/history"
-            )
+                awful.util.eval, nil,
+                awful.util.getdir("cache") .. "/history_eval"
+                )
+        end),
+    awful.key({ superkey, "Control" }, "p",
+        function ()
+            awful.prompt.run(
+                { prompt = "py: " },
+                w_promptbox[mouse.screen].widget,
+                awful.util.eval, nil,
+                awful.util.getdir("cache") .. "/history_eval"
+                )
         end)
---]]
+    --]]
 )
 
 --placeholder for clientkeys. key combination for specific window usage
 clientkeys = awful.util.table.join(
 	awful.key({ superkey, altkey }, "c", function (c) c:kill() end),
 	awful.key({ superkey, }, "f", function (c) c.fullscreen = not c.fullscreen end),
-	awful.key({ superkey, }, "n", function (c) c.minimized = true end),
+	awful.key({ superkey, }, "n", 
+        function (c) 
+            if cminimized then
+                c.minimized = false 
+            else 
+                c.minimized = true
+            end
+        end),
 	awful.key({ superkey, }, "m", 
 		function (c) 
 			c.maximized_horizontal = not c.maximized_horizontal

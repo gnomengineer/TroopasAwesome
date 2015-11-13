@@ -1,4 +1,3 @@
---@TODO clients aren't resizeable and moveable --> rules->properties
 --@TODO rightclick context menu to close a window/client
 
 -------------------------------------------------------
@@ -309,13 +308,12 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
     awful.key({ superkey, "Shift" }, "b", function () awful.util.spawn("blender") end),
     awful.key({ superkey, "Shift" }, "p", function () awful.util.spawn("processing") end),
---(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
-	--key binding for restarting and quitting the display manager
---	awful.key({ superkey, control, "Shift"}, "r", awesome.restart),
---	awful.key({ superkey, control, "Shift"}, "q", awesome.quit),
 	--key bindings for easy access to the layouts
 	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
 	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
+
+    --key bindings for command prompt
+    awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
 )
 
 --placeholder for clientkeys. key combination for specific window usage
