@@ -57,8 +57,8 @@ layouts = {
 -- }}
 
 -- {{ tags
-tags = { name = {"general", "internet", "chat", "vai"},
-		 layout = {layouts[1],layouts[3],layouts[1],layouts[3]}
+tags = { name = {"1","2","3","4","5"},
+		 layout = {layouts[1],layouts[1],layouts[1],layouts[1],layouts[1]}
 	   }
 for s = 1, screen.count() do
     tags[s]  = awful.tag(tags.name, s, tags.layout)
@@ -85,7 +85,8 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 -- menu for all programs which are not categorized
 workbench = {
     { "SailfishOS IDE", "" },
-    { "VirtualBox", "virtualbox" }
+    { "VirtualBox", "virtualbox" },
+    { "Wireshark", "wireshark" }
 }
 -- menu for internet applications
 office = {
@@ -95,13 +96,8 @@ office = {
 	{ "Torrent", "transmission-qt" },
 	{ "Email", "geary" },
     { "Tex", "texmaker" },
-    { "FTP", "filezilla" }
-}
--- browser menu containing common browsers for testing websites
-browser = {
-    { "Firefox", "firefox" },
-	{ "Chromium", "chromium" },
-    { "Opera", "opera" }
+    { "FTP", "filezilla" },
+    { "Chromium", "chromium" }
 }
 -- menu for applications with them i can chat/talk to another people
 chat = {
@@ -112,17 +108,12 @@ chat = {
 -- menu for ALL applications from multimedia (video,audio,image)
 mmf = {
 	{ "MPlayer", "smplayer"},
-	{ "GIMP", "gimp" },
-	{ "Audacity", "audacity" },
-	{ "myPaint", "mypaint" },
-    { "Processing", "processing" },
-    { "Blender", "blender" }
+	{ "GIMP", "gimp" }
 }
 
 mainmenu = awful.menu({ items = { 
 								  { "Workbench", workbench },
 								  { "Office", office },
-								  { "Browser", browser },
 								  { "Chat", chat },
                                   { "MultiMedia", mmf }
 								}
@@ -273,7 +264,7 @@ for s = 1, screen.count() do
 	rightside:add(separator)
 
 	--basic widget
-	if s == 2 then rightside:add(wibox.widget.systray()) end --systray
+	if s == 1 then rightside:add(wibox.widget.systray()) end --systray
 	rightside:add(w_textclock)--clock
 	rightside:add(w_layoutbox[s])
 
@@ -302,13 +293,11 @@ globalkeys = awful.util.table.join(
 	awful.key({ superkey, }, "s", function () awful.util.spawn("skype")end),
 	awful.key({ superkey, }, "p", function () awful.util.spawn("evince") end),
 	awful.key({ superkey, }, "b", function () awful.util.spawn("chromium")end),
+    awful.key({ superkey, }, "g", function () awful.util.spawn("gedit") end),
     awful.key({ superkey, }, "o", function() awful.util.spawn("libreoffice") end),
     awful.key({ superkey, }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
-    awful.key({ superkey, }, "f", function () awful.util.spawn("filezilla") end),
-	awful.key({ superkey, "Shift" }, "m", function () awful.util.spawn("mypaint") end),
+    awful.key({ superkey, }, "l", function () awful.util.spawn("texmaker") end),
     awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
-    awful.key({ superkey, "Shift" }, "b", function () awful.util.spawn("blender") end),
-    awful.key({ superkey, "Shift" }, "p", function () awful.util.spawn("processing") end),
 --(optional) awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
 	--key binding for restarting and quitting the display manager
 --	awful.key({ superkey, control, "Shift"}, "r", awesome.restart),
