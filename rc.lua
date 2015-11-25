@@ -221,6 +221,7 @@ w_tasklist.buttons = awful.util.table.join(
 
 -- add everything  to the wibox and the wibox to the screen
 for s = 1, screen.count() do
+    w_promptbox[s] = awful.widget.prompt()
 	w_layoutbox[s] = awful.widget.layoutbox(s)
 	w_layoutbox[s]:buttons(awful.util.table.join(
 								awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
@@ -243,7 +244,7 @@ for s = 1, screen.count() do
 	leftside:add(menulauncher)
 	leftside:add(powerlauncher)
 	leftside:add(w_taglist[s])
-	--leftside:add()--prompt box?
+	leftside:add(w_promptbox[s])
 
 	-- variable for rightside content of wibox
 	local rightside = wibox.layout.fixed.horizontal()
@@ -300,10 +301,10 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey, "Shift" }, "b", function () awful.util.spawn("blender") end),
 	--key bindings for easy access to the layouts
 	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
-	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end)
+	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end),
 
     --key bindings for command prompt
-    awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end),
+    awful.key({ superkey, }, "r", function () w_promptbox[mouse.screen]:run() end)
 )
 
 --placeholder for clientkeys. key combination for specific window usage
