@@ -298,6 +298,7 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey, }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
     awful.key({ superkey, }, "l", function () awful.util.spawn("texmaker") end),
     awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
+    awful.key({ superkey, "Shift" }, "m", function () awful.util.spawn("mypaint") end),
     awful.key({ superkey, "Shift" }, "b", function () awful.util.spawn("blender") end),
 	--key bindings for easy access to the layouts
 	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
