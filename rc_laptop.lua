@@ -107,7 +107,8 @@ multimedia = { { "processing", "processing"},
 office = { { "editor", "gedit"},
 		   { "pdf", "evince"},
 		   { "office", "libreoffice"},
-           { "tex", "texmaker"}
+           { "tex", "texmaker"},
+           { "torrent", "transmission-qt"}
 		 }
 
 mainmenu = awful.menu({ items = { { "terminal", terminal },
