@@ -86,28 +86,37 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 developer = { { "UML", "umlet"},
 			  { "Eclipse", "eclipse"},
               { "Fireforx", "firefox"},
-              { "VirtualBox", "virtualbox"}
+              { "VirtualBox", "virtualbox"},
+              { "KDS", "kinetis"}
 			}
 
+mathematics = { { "R", "rstudio-bin"},
+                { "Maple", "xmaple"},
+                { "MATLAB", "matlab"},
+                { "octave", terminal .. " -e octave --no-gui"},
+                { "calc", terminal .. " -e python"}
+            }
+
 multimedia = { { "processing", "processing"},
+               { "paint", "mypaint"},
                { "audacity", "audacity"},
                { "blender", "blender"}
              }
 
 
-office = { { "paint", "mypaint"},
-    	   { "editor", "gedit"},
+office = { { "editor", "gedit"},
 		   { "pdf", "evince"},
 		   { "office", "libreoffice"},
            { "tex", "texmaker"},
-           { "mathe", terminal .. " -e octave --no-gui"}
+           { "torrent", "transmission-qt"}
 		 }
 
 mainmenu = awful.menu({ items = { { "terminal", terminal },
 								  { "browser", "chromium" },
 								  { "office", office },
 								  { "developing", developer},
-                                  { "mmf", multimedia }
+                                  { "maths", mathematics},
+                                  { "multimedia", multimedia }
 								}
 					 })
 
@@ -304,7 +313,7 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey }, "e", function () awful.util.spawn("eclipse") end),
     awful.key({ superkey }, "o", function () awful.util.spawn("libreoffice") end),
     awful.key({ superkey }, "g", function () awful.util.spawn("gedit") end),
-    awful.key({ superkey, "Shift" }, "p", function () awful.util.spawn("mypaint") end),
+    awful.key({ superkey, "Shift" }, "m", function () awful.util.spawn("mypaint") end),
     awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
     awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
     awful.key({ superkey, "Shift" }, "l", function () awful.util.spawn("texmaker") end),
