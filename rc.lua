@@ -85,7 +85,9 @@ powerlauncher = awful.widget.launcher({ image = beautiful.powerlauncher,
 workbench = {
     { "SailfishOS IDE", "" },
     { "VirtualBox", "virtualbox" },
-    { "Wireshark", "wireshark" }
+    { "Wireshark", "wireshark" },
+    { "Kinetis", "kinetis"},
+    { "UML", "umlet"}
 }
 -- menu for internet applications
 office = {
@@ -98,6 +100,12 @@ office = {
     { "FTP", "filezilla" },
     { "Chromium", "chromium" }
 }
+-- menu for mathematical programs
+math = {
+    { "R", "rstudio-bin"},
+    { "octave", terminal .. " -e octave --no-gui"},
+    { "calc", terminal .. " -e python"}
+}
 -- menu for applications with them i can chat/talk to another people
 chat = {
 	{ "Skype", "skype" },
@@ -107,13 +115,15 @@ chat = {
 -- menu for ALL applications from multimedia (video,audio,image)
 mmf = {
 	{ "MPlayer", "smplayer"},
-	{ "GIMP", "gimp" }
+	{ "GIMP", "gimp" },
+    { "Paint", "mypaint"}
 }
 
 mainmenu = awful.menu({ items = { 
 								  { "Workbench", workbench },
 								  { "Office", office },
 								  { "Chat", chat },
+                                  { "Mathematics", math},
                                   { "MultiMedia", mmf }
 								}
 					 })
@@ -292,13 +302,14 @@ globalkeys = awful.util.table.join(
 	awful.key({ superkey, }, "t", function() awful.util.spawn(terminal)end),
 	awful.key({ superkey, }, "s", function () awful.util.spawn("skype")end),
 	awful.key({ superkey, }, "p", function () awful.util.spawn("evince") end),
+	awful.key({ superkey, }, "u", function () awful.util.spawn("umlet") end),
 	awful.key({ superkey, }, "b", function () awful.util.spawn("chromium")end),
     awful.key({ superkey, }, "g", function () awful.util.spawn("gedit") end),
-    awful.key({ superkey, }, "o", function() awful.util.spawn("libreoffice") end),
     awful.key({ superkey, }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
-    awful.key({ superkey, }, "l", function () awful.util.spawn("texmaker") end),
+    awful.key({ superkey, }, "l", function () awful.util.spawn("xtrlock") end),
     awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
     awful.key({ superkey, "Shift" }, "m", function () awful.util.spawn("mypaint") end),
+    awful.key({ superkey, "Shift" }, "l", function () awful.util.spawn("texmaker") end),
     awful.key({ superkey, "Shift" }, "b", function () awful.util.spawn("blender") end),
 	--key bindings for easy access to the layouts
 	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
