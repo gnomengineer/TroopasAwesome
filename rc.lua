@@ -56,7 +56,7 @@ layouts = {
 -- }}
 
 -- {{ tags
-tAGS = { Name = {"1","2","3","4","5","6","7","8","9"},
+tags = { name = {"1","2","3","4","5","6","7","8","9"},
 		 layout = {layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1]}
 	   }
 for s = 1, screen.count() do
@@ -123,7 +123,7 @@ mainmenu = awful.menu({ items = {
 								  { "Workbench", workbench },
 								  { "Office", office },
 								  { "Chat", chat },
-                                  { "Mathematics", math},
+                                  { "Mathematics", math },
                                   { "MultiMedia", mmf }
 								}
 					 })
