@@ -56,8 +56,8 @@ layouts = {
 -- }}
 
 -- {{ tags
-tags = { name = {"1","2","3","4","5"},
-		 layout = {layouts[1],layouts[1],layouts[1],layouts[1],layouts[1]}
+tAGS = { Name = {"1","2","3","4","5","6","7","8","9"},
+		 layout = {layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1]}
 	   }
 for s = 1, screen.count() do
     tags[s]  = awful.tag(tags.name, s, tags.layout)
