@@ -56,8 +56,8 @@ layouts = {
 -- }}
 
 -- {{ tags
-tags = { name = {"1","2","3","4","5","6","7","8","9"},
-		 layout = {layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1],layouts[1]}
+tags = { name = {"1","2","3","4","5"},
+		 layout = {layouts[1],layouts[1],layouts[1],layouts[1],layouts[1]}
 	   }
 for s = 1, screen.count() do
     tags[s]  = awful.tag(tags.name, s, tags.layout)
@@ -101,7 +101,7 @@ office = {
     { "Chromium", "chromium" }
 }
 -- menu for mathematical programs
-math = {
+mathematics = {
     { "R", "rstudio-bin"},
     { "octave", terminal .. " -e octave --no-gui"},
     { "calc", terminal .. " -e python"}
@@ -123,7 +123,7 @@ mainmenu = awful.menu({ items = {
 								  { "Workbench", workbench },
 								  { "Office", office },
 								  { "Chat", chat },
-                                  { "Mathematics", math },
+                                  { "Mathematics", mathematics },
                                   { "MultiMedia", mmf }
 								}
 					 })
