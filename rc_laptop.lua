@@ -315,7 +315,7 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey }, "g", function () awful.util.spawn("gedit") end),
     awful.key({ superkey, "Shift" }, "m", function () awful.util.spawn("mypaint") end),
     awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
-    awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e irssi") end),
+    awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e screen irssi") end),
     awful.key({ superkey, "Shift" }, "l", function () awful.util.spawn("texmaker") end),
     awful.key({ superkey }, "l", function () awful.util.spawn("xtrlock") end),
 	--key bindings for easy access to the layouts
