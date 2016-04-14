@@ -114,9 +114,9 @@ office = { { "editor", "gedit"},
 mainmenu = awful.menu({ items = { { "terminal", terminal },
 								  { "browser", "chromium" },
 								  { "office", office },
-								  { "developing", developer},
+								  { "r&d", developer},
                                   { "maths", mathematics},
-                                  { "multimedia", multimedia }
+                                  { "media", multimedia }
 								}
 					 })
 
@@ -317,7 +317,7 @@ globalkeys = awful.util.table.join(
     awful.key({ superkey, "Shift" }, "g", function () awful.util.spawn("gimp") end),
     awful.key({ superkey }, "i", function () awful.util.spawn(terminal .. " -e screen irssi") end),
     awful.key({ superkey, "Shift" }, "l", function () awful.util.spawn("texmaker") end),
-    awful.key({ superkey }, "l", function () awful.util.spawn("xtrlock") end),
+    awful.key({ superkey }, "l", function () awful.util.spawn("slock") end),
 	--key bindings for easy access to the layouts
 	awful.key({ superkey, }, "space", function () awful.layout.inc(layouts, 1) end),
 	awful.key({ superkey, "Shift"}, "space", function () awful.layout.inc(layouts, -1) end),
