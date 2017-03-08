@@ -8,9 +8,7 @@ description : the configuration I'm using atm for my own needs
 #### Version history
 
 **V1.0** : rc.lua and rc\_laptop.lua are now ready for use.
+they are adapted for awesome 3.5 only.
 
-#### Open issues
-1) clients/windows aren't resizeable nor moveable  
-2) rightclick context menu on tasklist doesn't work  
-3) message and command prompts are missing  
-4) auto focus when moving with mouse pointer over windows  
+#### Important
+this project will be stopped due to his successor project adapting for newer awesome versions.
